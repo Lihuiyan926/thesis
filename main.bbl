@@ -1,0 +1,469 @@
+\begin{thebibliography}{68}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax\else
+  \urlstyle{same}\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \DeclareUrlCommand\doi{\urlstyle{rm}}
+  \def\eprint#1#2{#2}
+\else
+  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+  \let\eprint\href
+\fi
+
+\bibitem[Hagino et~al.(1999)Hagino, Rowley, and Kruppa]{hagino1999program}
+HAGINO K, ROWLEY N, KRUPPA A.
+\newblock A program for coupled-channel calculations with all order couplings
+  for heavy-ion fusion reactions\allowbreak[J].
+\newblock Computer Physics Communications, 1999, 123: 143.
+
+\bibitem[Hagino et~al.(2004)Hagino and Rowley]{hagino2004large}
+HAGINO K, ROWLEY N.
+\newblock Large-angle scattering and quasielastic barrier
+  distributions\allowbreak[J].
+\newblock Physical Review C, 2004, 69: 054610.
+
+\bibitem[Hagino et~al.(2012)Hagino and Takigawa]{Hagino2012}
+HAGINO K, TAKIGAWA N.
+\newblock Subbarrier fusion reactions and many-particle quantum
+  tunneling\allowbreak[J].
+\newblock Progress of Theoretical Physics, 2012, 128: 1061.
+
+\bibitem[Balantekin et~al.(1998)Balantekin and Takigawa]{RevModPhys.70.77}
+BALANTEKIN A~B, TAKIGAWA N.
+\newblock Quantum tunneling in nuclear fusion\allowbreak[J].
+\newblock Reviews of Modern Physics, 1998, 70: 77.
+
+\bibitem[Esbensen et~al.(1987)Esbensen, Landowne, and Price]{PhysRevC.36.2359}
+ESBENSEN H, LANDOWNE S, PRICE C.
+\newblock High-spin excitations in the rotating frame and sudden
+  approximations\allowbreak[J].
+\newblock Physical Review C, 1987, 36: 2359.
+
+\bibitem[Descouvemont(2016)]{DESCOUVEMONT2016199}
+DESCOUVEMONT P.
+\newblock An {R}-matrix package for coupled-channel problems in nuclear
+  physics\allowbreak[J].
+\newblock Computer Physics Communications, 2016, 200: 199.
+
+\bibitem[James et~al.(1975)James and Roos]{JAMES1975343}
+JAMES F, ROOS M.
+\newblock Minuit - a system for function minimization and analysis of the
+  parameter errors and correlations\allowbreak[J].
+\newblock Computer Physics Communications, 1975, 10: 343.
+
+\bibitem[Storn et~al.(1997)Storn and Price]{DE1997}
+STORN R, PRICE K.
+\newblock Differential evolution - a simple and efficient heuristic for global
+  optimization over continuous spaces\allowbreak[J/OL].
+\newblock Journal of Global Optimization, 1997, 11: 341.
+\newblock DOI: \doi{10.1023/A:1008202821328}.
+
+\bibitem[Timmers et~al.(1995)Timmers, Leigh, Dasgupta, Hinde, Lemmon, Mein,
+  Morton, Newton, and Rowley]{timmers1995probing}
+TIMMERS H, LEIGH J, DASGUPTA M, et~al.
+\newblock Probing fusion barrier distributions with quasi-elastic
+  scattering\allowbreak[J].
+\newblock Nuclear Physics A, 1995, 584: 190.
+
+\bibitem[{Lin, C.J.} et~al.(2011){Lin, C.J.}, {Jia, H.M.}, {Zhang, H.Q.},
+  {Yang, F.}, {Xu, X.X.}, {Liu, Z.H.}, and {Zhang, S.T.}]{refId0}
+{Lin, C.J.}, {Jia, H.M.}, {Zhang, H.Q.}, et~al.
+\newblock Nuclear reactions studied by quasi-elastic measurements with high
+  precision at backward angles\allowbreak[J].
+\newblock EPJ Web of Conferences, 2011, 17: 05005.
+
+\bibitem[Yusa et~al.(2012)Yusa, Hagino, and Rowley]{Yusa2012}
+YUSA S, HAGINO K, ROWLEY N.
+\newblock Role of noncollective excitations in heavy-ion fusion reactions and
+  quasi-elastic scattering around the coulomb barrier\allowbreak[J].
+\newblock Phys. Rev. C, 2012, 85: 054601.
+
+\bibitem[Ziegler et~al.(1968)Ziegler and Peterson]{PhysRev.165.1337}
+ZIEGLER J~F, PETERSON G~A.
+\newblock Excitation of $^{206}${Pb}, $^{207}${Pb}, $^{208}${Pb}, and
+  $^{209}${Bi} by inelastic electron scattering\allowbreak[J].
+\newblock Phys. Rev., 1968, 165: 1337-1351.
+
+\bibitem[Nagao et~al.(1971)Nagao and Torizuka]{NAGAO1971383}
+NAGAO M, TORIZUKA Y.
+\newblock Electron excitation of low-lying states in
+  $^{208}${Pb}\allowbreak[J].
+\newblock Physics Letters B, 1971, 37\allowbreak (4): 383-385.
+
+\bibitem[Saudinos et~al.(1966)Saudinos, Vallois, Beer, Gendrot, and
+  Lopato]{SAUDINOS1966492}
+SAUDINOS J, VALLOIS G, BEER O, et~al.
+\newblock Spectroscopie de $^{208}${Pb} par diffusion inelastique de protons de
+  24.55 {MeV}\allowbreak[J].
+\newblock Physics Letters, 1966, 22\allowbreak (4): 492-494.
+
+\bibitem[Scott et~al.(1977)Scott, Mathur, and Petrovich]{SCOTT1977222}
+SCOTT A, MATHUR N, PETROVICH F.
+\newblock Low-lying normal parity excitations in the $^{208}${Pb}$(p,
+  p^{\prime})$$^{208}${Pb} reaction at ${E}_p = 61.2$ {MeV}\allowbreak[J].
+\newblock Nuclear Physics A, 1977, 285\allowbreak (2): 222-234.
+
+\bibitem[Wagner et~al.(1975)Wagner, Crawley, Hammerstein, and
+  McManus]{wagner1975high}
+WAGNER W~T, CRAWLEY G~M, HAMMERSTEIN G~R, et~al.
+\newblock High-resolution study of $^{208}${Pb} with 35-{MeV}
+  protons\allowbreak[J].
+\newblock Phys. Rev. C, 1975, 12: 757-777.
+
+\bibitem[Scott et~al.(1966)Scott and Fricke]{SCOTT1966654}
+SCOTT A, FRICKE M.
+\newblock Inelastic scattering of 40 {MeV} protons by
+  $^{208}${Pb}\allowbreak[J].
+\newblock Physics Letters, 1966, 20\allowbreak (6): 654-656.
+
+\bibitem[Lewis et~al.(1973)Lewis, Bertrand, and Fulmer]{lewis1973investigation}
+LEWIS M~B, BERTRAND F~E, FULMER C~B.
+\newblock Investigation of the $^{208}${Pb}$(p, p^{\prime})$ reaction at ${E}=
+  54$ {MeV}\allowbreak[J].
+\newblock Phys. Rev. C, 1973, 7: 1966-1972.
+
+\bibitem[Adams et~al.(1980)Adams, Bacher, Emery, Jones, Miller, Love, and
+  Petrovich]{ADAMS198023}
+ADAMS G, BACHER A, EMERY G, et~al.
+\newblock Inelastic excitation of normal parity levels in $^{208}${Pb} by 135
+  {MeV} protons\allowbreak[J].
+\newblock Physics Letters B, 1980, 91\allowbreak (1): 23-26.
+
+\bibitem[Ingemarsson et~al.(1976)Ingemarsson and
+  Fagerstr{\"o}m]{Ingemarsson1976InelasticSO}
+INGEMARSSON A, FAGERSTR{\"O}M B.
+\newblock Inelastic scattering of 185 {MeV} protons from
+  $^{208}${Pb}\allowbreak[J].
+\newblock Physica Scripta, 1976, 13: 208 - 212.
+
+\bibitem[McDaniels et~al.(1987)McDaniels, Lisantti, Bergqvist, Swenson, Chen,
+  Horen, Bertrand, Gross, Glover, Sayer, Burks, Häusser, and
+  Hicks]{MCDANIELS1987557}
+MCDANIELS D, LISANTTI J, BERGQVIST I, et~al.
+\newblock Validity of collective model {DWBA} analysis for intermediate energy
+  proton scattering to low-lying states of $^{208}\mathrm{Pb}$\allowbreak[J].
+\newblock Nuclear Physics A, 1987, 467\allowbreak (4): 557-574.
+
+\bibitem[Djalali et~al.(1982)Djalali, Marty, Morlet, and Willis]{DJALALI198242}
+DJALALI C, MARTY N, MORLET M, et~al.
+\newblock 201 {MeV} proton excitation of giant resonances in $^{208}${Pb}:
+  Macroscopic and microscopic analysis\allowbreak[J].
+\newblock Nuclear Physics A, 1982, 380\allowbreak (1): 42-60.
+
+\bibitem[Blanpied et~al.(1978)Blanpied, Coker, Liljestrand, Hoffmann, Ray,
+  Madland, Morris, Pratt, Spencer, Thiessen, Kozlowski, Hintz, Kyle, Oothoudt,
+  Bauer, Igo, Ridge, Whitten, Lang, Nann, and Seth]{PhysRevC.18.1436}
+BLANPIED G~S, COKER W~R, LILJESTRAND R~P, et~al.
+\newblock Proton elastic and inelastic scattering at 0.8 gev from
+  $^{12,13}\mathrm{C}$ and $^{208}\mathrm{Pb}$\allowbreak[J].
+\newblock Phys. Rev. C, 1978, 18: 1436-1446.
+
+\bibitem[Gazzaly et~al.(1982)Gazzaly, Hintz, Kyle, Owen, Hoffmann, Barlett, and
+  Blanpied]{PhysRevC.25.408}
+GAZZALY M~M, HINTZ N~M, KYLE G~S, et~al.
+\newblock Neutron-proton decomposition of transition matrix elements from a
+  comparison of 800 {MeV} proton scattering with electromagnetic
+  methods\allowbreak[J].
+\newblock Phys. Rev. C, 1982, 25: 408-421.
+
+\bibitem[Rapaport et~al.(1978)Rapaport, Cheema, Bainum, Finlay, and
+  Carlson]{RAPAPORT197895}
+RAPAPORT J, CHEEMA T, BAINUM D, et~al.
+\newblock Neutron scattering from $^{208}${Pb}\allowbreak[J].
+\newblock Nuclear Physics A, 1978, 296\allowbreak (1): 95-108.
+
+\bibitem[Baker et~al.(1972)Baker and Tickle]{baker1972pb}
+BAKER F~T, TICKLE R.
+\newblock $^{208}${Pb}($^{3}${He}, $^{3}${He}$^{\prime}$) reaction at 43.7
+  {MeV}\allowbreak[J].
+\newblock Phys. Rev. C, 1972, 5: 544-549.
+
+\bibitem[Alster(1966)]{alster1966collective}
+ALSTER J.
+\newblock Collective excitations in $^{207}${Pb}, $^{208}${Pb}, and
+  $^{209}${Bi}\allowbreak[J].
+\newblock Phys. Rev., 1966, 141: 1138-1145.
+
+\bibitem[Alster(1967)]{ALSTER1967459}
+ALSTER J.
+\newblock Nuclear transition strength systematics in the {Pb}
+  region\allowbreak[J].
+\newblock Physics Letters B, 1967, 25\allowbreak (7): 459-461.
+
+\bibitem[Rutledge et~al.(1976)Rutledge and Hiebert]{rutledge1976isoscalar}
+RUTLEDGE L~L, HIEBERT J~C.
+\newblock Isoscalar transition rates via $^{40}${Ca}, $^{208}${Pb}$(\alpha,
+  \alpha^{\prime})$ at 79 {MeV}\allowbreak[J].
+\newblock Phys. Rev. C, 1976, 13: 1072-1082.
+
+\bibitem[Harakeh et~al.(1979)Harakeh, {Van Heyst}, {Van Der Borg}, and {Van Der
+  Woude}]{HARAKEH1979373}
+HARAKEH M, {Van Heyst} B, {Van Der Borg} K, et~al.
+\newblock Isoscalar excitations in the lead region observed in inelastic
+  $\alpha$-scattering at ${E}_{\alpha} = 120$ {MeV}\allowbreak[J].
+\newblock Nuclear Physics A, 1979, 327\allowbreak (2): 373-396.
+
+\bibitem[Morsch et~al.(1980)Morsch, S\"uk\"osd, Rogge, Turek, Machner, and
+  Mayer-B\"oricke]{morsch1980giant}
+MORSCH H~P, S\"UK\"OSD C, ROGGE M, et~al.
+\newblock Giant monopole and quadrupole resonances and other multipole
+  excitations in $^{208}${Pb} studied in 43 {MeV/nucleon} $\alpha$-particle and
+  deuteron scattering\allowbreak[J].
+\newblock Phys. Rev. C, 1980, 22: 489-500.
+
+\bibitem[Stephens et~al.(1971)Stephens, Diamond, and de~Boer]{stephens19714}
+STEPHENS F~S, DIAMOND R~M, DE~BOER J.
+\newblock $e4$ moments in $^{152}${Sm} and $^{154}${Sm}\allowbreak[J].
+\newblock Phys. Rev. Lett., 1971, 27: 1151-1154.
+
+\bibitem[Fischer et~al.(1977)Fischer, Kamke, Kittling, Kuhlmann, Plicht, and
+  Schormann]{fischer1977electric}
+FISCHER H, KAMKE D, KITTLING H~J, et~al.
+\newblock Electric moments and charge deformation parameters in
+  $^{152,154}${Sm}, $^{156}${Gd}, and$^{166}${Er}\allowbreak[J].
+\newblock Phys. Rev. C, 1977, 15: 921-926.
+
+\bibitem[Saylor et~al.(1972)Saylor, Saladin, Lee, and Erb]{SAYLOR197251}
+SAYLOR T, SALADIN J, LEE I, et~al.
+\newblock Electric hexadecapole transition moments in $^{152,
+  154}${Sm}\allowbreak[J].
+\newblock Physics Letters B, 1972, 42\allowbreak (1): 51-53.
+
+\bibitem[Erb et~al.(1972)Erb, Holden, Lee, Saladin, and
+  Saylor]{PhysRevLett.29.1010}
+ERB K~A, HOLDEN J~E, LEE I~Y, et~al.
+\newblock Quadrupole and hexadecapole deformations in rare-earth
+  nuclei\allowbreak[J].
+\newblock Phys. Rev. Lett., 1972, 29: 1010-1014.
+
+\bibitem[Wollersheim et~al.(1974)Wollersheim, Wilcke, Elze, and
+  Pelte]{WOLLERSHEIM1974323}
+WOLLERSHEIM H, WILCKE W, ELZE T, et~al.
+\newblock Hexadecapole moments obtained by semiclassical and quantum mechanical
+  analyses of coulomb excitation\allowbreak[J].
+\newblock Physics Letters B, 1974, 48\allowbreak (4): 323-325.
+
+\bibitem[Wollersheim et~al.(1977)Wollersheim and {W. Elze}]{WOLLERSHEIM197787}
+WOLLERSHEIM H, {W. Elze} T.
+\newblock Electric quadrupole and hexadecapole moments in the transitional
+  nuclei $^{150}${Nd}, $^{152}${Sm}, $^{154}${Sm}, $^{154}${Gd} and
+  $^{156}${Gd}\allowbreak[J].
+\newblock Nuclear Physics A, 1977, 278\allowbreak (1): 87-94.
+
+\bibitem[M\"oller et~al.(1995)M\"oller, Nix, Myers, and
+  Swiatecki]{MOLLER1995185}
+M\"OLLER P, NIX J, MYERS W, et~al.
+\newblock Nuclear ground-state masses and deformations\allowbreak[J].
+\newblock Atomic Data and Nuclear Data Tables, 1995, 59\allowbreak (2):
+  185-381.
+
+\bibitem[M\"oller et~al.(2016)M\"oller, Sierk, Ichikawa, and
+  Sagawa]{MOLLER20161}
+M\"OLLER P, SIERK A, ICHIKAWA T, et~al.
+\newblock Nuclear ground-state masses and deformations:
+  {FRDM}(2012)\allowbreak[J].
+\newblock Atomic Data and Nuclear Data Tables, 2016, 109-110: 1-204.
+
+\bibitem[Jia et~al.(2014)Jia, Lin, Yang, Xu, Zhang, Liu, Wu, Yang, Ma, Bao, and
+  Sun]{jia2014extracting}
+JIA H~M, LIN C~J, YANG F, et~al.
+\newblock Extracting the hexadecapole deformation from backward quasi-elastic
+  scattering\allowbreak[J].
+\newblock Phys. Rev. C, 2014, 90: 031601.
+
+\bibitem[Cooper et~al.(1976)Cooper, Bertozzi, Heisemberg, Kowalski, Turchinetz,
+  Williamson, Cardman, Fivozinsky, Lightbody, and Penner]{cooper1976shapes}
+COOPER T, BERTOZZI W, HEISEMBERG J, et~al.
+\newblock Shapes of deformed nuclei as determined by electron scattering:
+  $^{152}${Sm}, $^{154}${Sm}, $^{166}${Er}, $^{176}${Yb}, $^{232}${Th}, and
+  $^{238}${U}\allowbreak[J].
+\newblock Phys. Rev. C, 1976, 13: 1083-1094.
+
+\bibitem[Nakada et~al.(1977)Nakada, Haik, Alster, Bellicard, Cochavi, Frois,
+  Huet, Leconte, Ludeau, Moinester, H\^o, and Turck]{nakada1977excitation}
+NAKADA A, HAIK N, ALSTER J, et~al.
+\newblock Excitation of the ground-state rotational band of $^{152}${Sm} by
+  250-{MeV} electrons\allowbreak[J].
+\newblock Phys. Rev. Lett., 1977, 38: 584-587.
+
+\bibitem[Petit et~al.(1993)Petit, van Hall, Klein, Moonen, Nijgh, van Overveld,
+  and Poppema]{RMALPetit_1993}
+PETIT R~M~A~L, VAN HALL P~J, KLEIN S~S, et~al.
+\newblock Collective effects in even-mass samarium isotopes by polarized-proton
+  scattering\allowbreak[J].
+\newblock Journal of Physics G: Nuclear and Particle Physics, 1993,
+  19\allowbreak (12): 2093.
+
+\bibitem[Obiajlinwa et~al.(1989)Obiajlinwa, Rosier, and {Van De
+  Wiele}]{OBIAJLINWA1989341}
+OBIAJLINWA E, ROSIER L, {Van De Wiele} J.
+\newblock Elastic and inelastic scattering of protons and alpha particles from
+  stable even samarium isotopes\allowbreak[J].
+\newblock Nuclear Physics A, 1989, 500\allowbreak (2): 341-355.
+
+\bibitem[Kurepin et~al.(1971)Kurepin and Lombard]{KUREPIN197155}
+KUREPIN A, LOMBARD R.
+\newblock Coupled channel analysis of asymmetry measurements for low-lying
+  states of $^{148}${Sm} and $^{152}${Sm} by inelastic proton
+  scattering\allowbreak[J].
+\newblock Physics Letters B, 1971, 37\allowbreak (1): 55-57.
+
+\bibitem[Barbier et~al.(1971)Barbier, Lombard, Moss, and
+  Terrien]{barbier1971inelastic}
+BARBIER M, LOMBARD R, MOSS J, et~al.
+\newblock Inelastic scattering of 24.5 {MeV} polarized protons from
+  $^{152}${Sm}\allowbreak[J].
+\newblock Physics Letters B, 1971, 34\allowbreak (5): 386-388.
+
+\bibitem[P\'alla et~al.(1983)P\'alla, Geramb, and Pegel]{palla1983elastic}
+P\'ALLA G, GERAMB H, PEGEL C.
+\newblock Elastic and inelastic scattering of 25.6 {MeV} protons from even
+  samarium isotopes\allowbreak[J].
+\newblock Nuclear Physics A, 1983, 403\allowbreak (1): 134-154.
+
+\bibitem[Ichihara et~al.(1987)Ichihara, Sakaguchi, Nakamura, Yosoi, Ieiri,
+  Takeuchi, Togawa, Tsutsumi, and Kobayashi]{ichihara1987inelastic}
+ICHIHARA T, SAKAGUCHI H, NAKAMURA M, et~al.
+\newblock Inelastic proton scattering exciting the $\gamma$-vibrational band in
+  deformed nuclei ($152\le {A}\le 192$) at 65 {MeV} and the systematics of the
+  hexadecapole (${Y}_ {42}$) strength of the $\gamma$ vibration\allowbreak[J].
+\newblock Phys. Rev. C, 1987, 36: 1754-1776.
+
+\bibitem[Trautner et~al.(1973)Trautner, Løvhøiden, and
+  Christensen]{TRAUTNER197341}
+TRAUTNER N, LøVHøIDEN G, CHRISTENSEN P.
+\newblock Elastic and inelastic deuteron scattering from $^{152}${Sm} and
+  $^{162}${Dy}\allowbreak[J].
+\newblock Physics Letters B, 1973, 44\allowbreak (1): 41-43.
+
+\bibitem[{Todd Baker} et~al.(1974){Todd Baker}, Kruse, Williams, and
+  Savin]{TODDBAKER1974428}
+{Todd Baker} F, KRUSE T, WILLIAMS M, et~al.
+\newblock Coulomb-nuclear interference for inelastic deuteron
+  scattering\allowbreak[J].
+\newblock Nuclear Physics A, 1974, 235\allowbreak (2): 428-435.
+
+\bibitem[Hatanaka et~al.(1983)Hatanaka, Matsuoka, Saito, Hosono, Kondo, Kato,
+  Higo, Matsuki, and Ogino]{HATANAKA1983109}
+HATANAKA K, MATSUOKA N, SAITO T, et~al.
+\newblock Elastic and inelastic scattering of vector polarized deuterons from
+  even samarium isotopes at 56 mev\allowbreak[J].
+\newblock Nuclear Physics A, 1983, 403\allowbreak (1): 109-133.
+
+\bibitem[P\'alla et~al.(1979)P\'alla and Pegel]{PALLA1979317}
+P\'ALLA G, PEGEL C.
+\newblock Inelastic scattering of helions from even-even stable samarium
+  isotopes at 40.9 {MeV}\allowbreak[J].
+\newblock Nuclear Physics A, 1979, 321\allowbreak (2): 317-340.
+
+\bibitem[Eagle et~al.(1977)Eagle, Clarke, Griffiths, Fulmer, and
+  Hensley]{eagle1977inelastic}
+EAGLE R, CLARKE N~M, GRIFFITHS R~J, et~al.
+\newblock Inelastic scattering of $^3${He} from samarium isotopes at 53
+  {MeV}\allowbreak[J].
+\newblock Phys. Rev. C, 1977, 16: 1314-1321.
+
+\bibitem[Shaw et~al.(1974)Shaw and Greenberg]{PhysRevC.10.263}
+SHAW A~H, GREENBERG J~S.
+\newblock Electric moments and charge deformation in even rare-earth
+  nuclei\allowbreak[J].
+\newblock Phys. Rev. C, 1974, 10: 263-283.
+
+\bibitem[Br\"uckner et~al.(1973)Br\"uckner, Merdinger, Pelte, Smilansky, and
+  Traxel]{bruckner1973nuclear}
+BR\"UCKNER W, MERDINGER J~G, PELTE D, et~al.
+\newblock Nuclear deformations from the interference effects between coulomb
+  and nuclear excitations in inelastic $\alpha$ scattering on
+  $^{152}${Sm}\allowbreak[J].
+\newblock Phys. Rev. Lett., 1973, 30: 57-60.
+
+\bibitem[Br{\"u}ckner et~al.(1974)Br{\"u}ckner, Husar, Pelte, Traxel, Samuel,
+  and Smilansky]{BRUCKNER1974159}
+BR{\"U}CKNER W, HUSAR D, PELTE D, et~al.
+\newblock Nuclear deformations from inelastic $\alpha$-scattering on rare earth
+  nuclei at energies near the coulomb barrier\allowbreak[J].
+\newblock Nuclear Physics A, 1974, 231\allowbreak (1): 159-175.
+
+\bibitem[Hendrie et~al.(1968)Hendrie, Glendenning, Harvey, Jarvis, Duhm,
+  Saudinos, and Mahoney]{HENDRIE1968127}
+HENDRIE D, GLENDENNING N, HARVEY B, et~al.
+\newblock Determination of ${Y}_{40}$ and ${Y}_{60}$ components in the shapes
+  of rare earth nuclei\allowbreak[J].
+\newblock Physics Letters B, 1968, 26\allowbreak (3): 127-130.
+
+\bibitem[G{\"o}tz et~al.(1972)G{\"o}tz, Pauli, Alder, and
+  Junker]{gotz1972ground}
+G{\"O}TZ U, PAULI H, ALDER K, et~al.
+\newblock Ground state deformations in the rare-earth nuclei\allowbreak[J].
+\newblock Nuclear Physics A, 1972, 192\allowbreak (1): 1-38.
+
+\bibitem[Leigh et~al.(1995)Leigh, Dasgupta, Hinde, Mein, Morton, Lemmon,
+  Lestone, Newton, Timmers, Wei, and Rowley]{leigh1995barrier}
+LEIGH J~R, DASGUPTA M, HINDE D~J, et~al.
+\newblock Barrier distributions from the fusion of oxygen ions with
+  $^{144,148,154}${Sm} and $^{186}${W}\allowbreak[J].
+\newblock Phys. Rev. C, 1995, 52: 3151-3166.
+
+\bibitem[Leigh et~al.(1993)Leigh, Rowley, Lemmon, Hinde, Newton, Wei, Mein,
+  Morton, Kuyucak, and Kruppa]{leigh1993reconciling}
+LEIGH J~R, ROWLEY N, LEMMON R~C, et~al.
+\newblock Reconciling deformation parameters from fusion with those from
+  coulomb excitation\allowbreak[J].
+\newblock Phys. Rev. C, 1993, 47: R437-R440.
+
+\bibitem[Rumin et~al.(1999)Rumin, Hagino, and Takigawa]{rumin1999effects}
+RUMIN T, HAGINO K, TAKIGAWA N.
+\newblock Effects of $\beta_6$ deformation and low-lying vibrational bands on
+  heavy-ion fusion reactions at sub-barrier energies\allowbreak[J].
+\newblock Phys. Rev. C, 1999, 61: 014605.
+
+\bibitem[King et~al.(1979)King, Finck, Crawley, Nolen, and
+  Ronningen]{king1979multipole}
+KING C~H, FINCK J~E, CRAWLEY G~M, et~al.
+\newblock Multipole moments of $^{154}${Sm}, $^{176}${Yb}, $^{232}${Th}, and
+  $^{238}${U} from proton inelastic scattering\allowbreak[J].
+\newblock Phys. Rev. C, 1979, 20: 2084-2092.
+
+\bibitem[Brown et~al.(1970)Brown and Stoler]{brown1970deformation}
+BROWN P~H, STOLER P.
+\newblock Deformation parameters in $^{154}${Sm} and $^{148}${Sm} obtained from
+  coupled-channel analysis of proton scattering\allowbreak[J].
+\newblock Phys. Rev. C, 1970, 2: 765-767.
+
+\bibitem[Lee et~al.(1975)Lee, Saladin, Holden, O'Brien, Baktash, Bemis,
+  Stelson, McGowan, Milner, Ford, Robinson, and Tuttle]{lee1975deformation}
+LEE I~Y, SALADIN J~X, HOLDEN J, et~al.
+\newblock Deformation parameters of the charge distribution and the optical
+  potential for some nuclei in and near the rare earth region\allowbreak[J].
+\newblock Phys. Rev. C, 1975, 12: 1483-1494.
+
+\bibitem[Aponick et~al.(1970)Aponick, Chesterfield, Bromley, and
+  Glendenning]{aponick1970quadrupole}
+APONICK A, CHESTERFIELD C, BROMLEY D, et~al.
+\newblock Quadrupole and hexadecapole deformations in rare earth
+  nuclei\allowbreak[J].
+\newblock Nuclear Physics A, 1970, 159\allowbreak (2): 367-384.
+
+\bibitem[Ogawa et~al.(1986)Ogawa, Sakaguchi, Nakamura, Noro, Sakamoto,
+  Ichihara, Yosoi, Ieiri, Isshiki, Takeuchi, and Kobayashi]{ogawa1986inelastic}
+OGAWA H, SAKAGUCHI H, NAKAMURA M, et~al.
+\newblock Inelastic scattering of 65 {MeV} polarized protons from $^{178}${Hf},
+  $^{180}${Hf}, $^{182}${W}, and $^{184}${W} and multipole moments of the
+  optical potential\allowbreak[J].
+\newblock Phys. Rev. C, 1986, 33: 834-846.
+
+\bibitem[Delaroche(1982)]{Delaroche1982}
+DELAROCHE J~P.
+\newblock Sensitivity of tungsten neutron cross sections to target band mixing
+  and ${\beta}_{6}$ deformation\allowbreak[J].
+\newblock Phys. Rev. C, 1982, 26: 1899-1913.
+
+\bibitem[Baker et~al.(1981)Baker, Scott, Styles, Kruse, Jones, and
+  Suchannek]{BAKER198163}
+BAKER F, SCOTT A, STYLES R, et~al.
+\newblock $^{182,184, 186}${W}($\alpha, \alpha$') reactions at ${E}_{\alpha}$=
+  24 {MeV}\allowbreak[J].
+\newblock Nuclear Physics A, 1981, 351\allowbreak (1): 63-76.
+
+\end{thebibliography}

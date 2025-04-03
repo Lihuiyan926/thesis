@@ -1,0 +1,78 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX program = xelatex
+
+\documentclass[master,chinese,pdf,AutoFakeFont=true]{ustcthesis}
+% bachelor|master|doctor
+\usepackage{ustcextra}
+\usepackage{subfigure}
+\graphicspath{{figures/}}
+%\bibliographystyle{ustcauthoryear}
+% \bibliographystyle{ustcnumerical}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+
+
+\title{利用背角准弹性散射抽取\\$^{152,154}$Sm,$^{184,186}$W和$^{208}$Pb形变参数研究}
+\author{李~慧~艳}
+\major{粒子物理与原子核物理}
+\advisor{杨磊}
+% \secrettext{机密\quad 小于等于20年}   % 内部|秘密|机密，注释本行则不保密
+\depart{研究员}
+
+
+% \entitle{The Research of the Design and Application \\of Cortex-like Intelligent Model}
+% \enauthor{Mincong Luo}
+% \enmajor{Applied Mathematics}
+% \enadvisor{Prof. Jianyou Lv}
+% \ensubmitdate{April, 2019}
+%\ensecrettext{Confidential\quad Less than or equal to 20 years}  % Internal|Secret|Confidential
+
+\begin{document}
+
+\maketitle
+
+
+% 硕博论文:
+%   frontmatter: 中文摘要、英文摘要、目录、符号说明
+%   mainmatter: 正文、参考文献
+%   appendix: 附录
+%   backmatter: 致谢、发表论文
+%
+
+\frontmatter
+\input{chapters/abstract}
+{
+\linespread{1.25}\selectfont% local line space
+\tableofcontents
+\listoffigures
+\listoftables
+}
+% \listofalgorithms  % 算法索引，如不需要，可直接注释掉本行
+% \input{chapters/notation}
+
+\newtheorem{proof_idea}{证明思路}
+\newtheorem{thm}{定理}
+
+\mainmatter
+% \input{chapters/cover}
+\input{chapters/chap01}
+\input{chapters/chap02}
+\input{chapters/chap03}
+\input{chapters/chap04}
+\input{chapters/chap05}
+\input{chapters/chap06}
+\input{chapters/chap07}
+
+
+\bibliographystyle{gbt7714-numerical}%{alpha}
+\bibliography{bib/refs}
+
+%\appendix{chapters/appendix}
+%\chapter{论文规范}
+
+\backmatter
+\input{chapters/appendix}
+\input{chapters/acknowledgements}
+\input{chapters/publications}
+
+\end{document}
