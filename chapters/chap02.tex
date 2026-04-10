@@ -1,0 +1,185 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第二章：文字与段落排版
+% 本章介绍 LaTeX 基础排版：段落、标题、列表、引用和特殊字符。
+% ============================================================
+
+\chapter{文字与段落排版}\label{chap:typesetting}
+
+\section{段落基础}
+
+在 \LaTeX{} 中，\textbf{空一行}表示新段落（即按两次回车），
+新段落会自动首行缩进2个汉字宽度，符合本院格式规范。
+
+\textbf{注意事项：}
+
+\begin{compactitem}
+    \item 单次换行（按一次回车）在 \LaTeX{} 中\textbf{不会}产生换行效果，只是源码中的排版习惯。
+    \item 不要使用 \verb|\\| 强制换行来分隔段落，这会破坏首行缩进。
+    \item 中文之间的空格会被 \LaTeX{} 自动忽略，中英文之间会自动添加适当间距。
+    \item 多个连续空格等同于一个空格。
+\end{compactitem}
+
+示例：下面两段文字在源码中用空行分隔，排版后自动产生段落缩进。
+
+这是第一段的内容，介绍了实验的背景和意义。在实际论文中，这里应该是完整的学术内容。
+
+这是第二段的内容，继续论述相关问题。段落间无需手动添加缩进，模板已自动配置。
+
+\section{字体样式}
+
+常用字体命令：
+
+\begin{compactitem}
+    \item \verb|\textbf{文字}| → \textbf{加粗文字}（黑体效果）
+    \item \verb|\textit{text}| → \textit{斜体文字}（仅对英文有明显效果）
+    \item \verb|\underline{文字}| → \underline{下划线文字}
+    \item \verb|\texttt{text}| → \texttt{等宽字体}（用于代码、文件名）
+    \item \verb|\emph{文字}| → \emph{强调文字}（英文斜体，中文加粗）
+\end{compactitem}
+
+\textbf{建议}：论文正文中尽量少用字体变化，过多装饰会影响阅读专注度。
+
+\section{标题层级}
+
+本模板支持三级正文标题，对应格式已由模板自动设定：
+
+\begin{compactitem}
+    \item \verb|\section{标题}|：一级标题（节），黑体四号，顶格
+    \item \verb|\subsection{标题}|：二级标题（条），黑体小四号，顶格
+    \item \verb|\subsubsection{标题}|：三级标题，黑体小四号
+\end{compactitem}
+
+格式规范要求：\textbf{论文中一般不出现四级标题}（即不使用 \verb|\subsubsection| 过多层级）。
+
+每个标题后面应紧跟 \verb|\label{sec:标识符}| 以便后续交叉引用：
+
+\begin{verbatim}
+\section{实验方法}\label{sec:method}
+\subsection{探测器设置}\label{sec:detector}
+\end{verbatim}
+
+\subsection{标题引用示例}
+
+上一章第~\ref{chap:quickstart}~章介绍了快速开始的方法，
+本章第~\ref{sec:crossref}~节将介绍交叉引用的具体写法。
+
+\section{列表环境}
+
+\LaTeX{} 提供两种主要列表环境。本模板通过 \texttt{ustcextra.sty} 提供了紧凑版本，
+段落间距更小，更适合论文排版。
+
+\subsection{无序列表}
+
+使用 \texttt{compactitem} 环境（推荐，间距紧凑）：
+
+\begin{verbatim}
+\begin{compactitem}
+    \item 第一条内容
+    \item 第二条内容
+    \item 第三条内容
+\end{compactitem}
+\end{verbatim}
+
+效果如下：
+\begin{compactitem}
+    \item 能量分辨率优于 1\%
+    \item 时间分辨率优于 200 ps
+    \item 探测效率大于 95\%
+\end{compactitem}
+
+\subsection{有序列表}
+
+使用 \texttt{compactenum} 环境：
+
+\begin{verbatim}
+\begin{compactenum}
+    \item 第一步：初始化参数
+    \item 第二步：运行模拟
+    \item 第三步：分析结果
+\end{compactenum}
+\end{verbatim}
+
+效果如下：
+\begin{compactenum}
+    \item 第一步：初始化参数
+    \item 第二步：运行模拟
+    \item 第三步：分析结果
+\end{compactenum}
+
+列表可以嵌套，但建议不超过两层，以保持可读性。
+
+\section{交叉引用}\label{sec:crossref}
+
+交叉引用是 \LaTeX{} 的重要功能，可以自动引用章节、图、表、公式的编号，
+修改论文内容时编号自动更新，无需手动维护。
+
+\subsection{基本用法}
+
+\begin{compactenum}
+    \item 在需要被引用的位置添加标签：\verb|\label{标识符}|
+    \item 在引用处使用：\verb|\ref{标识符}|（显示编号）
+\end{compactenum}
+
+推荐的标识符命名规范：
+
+\begin{compactitem}
+    \item 章节：\verb|chap:introduction|、\verb|sec:method|
+    \item 图：\verb|fig:detector|、\verb|fig:result|
+    \item 表：\verb|tab:parameters|、\verb|tab:results|
+    \item 公式：\verb|eq:schrodinger|、\verb|eq:cross_section|
+\end{compactitem}
+
+引用示例：
+
+\begin{verbatim}
+如图~\ref{fig:detector}~所示，探测器由三层组成。
+表~\ref{tab:parameters}~列出了实验参数。
+由公式~(\ref{eq:cross_section})~可得截面值。
+详见第~\ref{chap:experiment}~章。
+\end{verbatim}
+
+\textbf{注意}：在 \verb|\ref{}| 两侧使用 \verb|~|（波浪线）表示不可断行空格，
+避免"图"字与编号被分到两行。
+
+\section{特殊字符的输入}
+
+以下字符在 \LaTeX{} 中有特殊含义，直接输入会报错，需要转义：
+
+\begin{table}[H]
+\centering
+\bicaption{特殊字符输入方法}{Special character input methods}
+\begin{tabular}{cll}
+\hline
+字符 & 含义 & 输入方式 \\
+\hline
+\texttt{\%} & 注释符 & \verb|\%| \\
+\texttt{\$} & 公式符 & \verb|\$| \\
+\texttt{\&} & 表格列分隔 & \verb|\&| \\
+\texttt{\#} & 宏参数 & \verb|\#| \\
+\texttt{\_} & 下标 & \verb|\_| \\
+\texttt{\{} \texttt{\}} & 分组 & \verb|\{| \verb|\}| \\
+\texttt{\^{}} & 上标 & \verb|\^{}| \\
+\texttt{\~{}} & 不断行空格 & \verb|\~{}| \\
+\hline
+\end{tabular}
+\end{table}
+
+其他常用输入：
+\begin{compactitem}
+    \item 省略号：\verb|\ldots| → \ldots （不要用三个英文句号）
+    \item 破折号：\verb|——|（直接输入中文破折号）或 \verb|---| → ---
+    \item 连字符：\verb|-|（单个减号，用于复合词，如 time-of-flight）
+    \item 数字范围：\verb|--| → 1--10（长短介于 - 和 ---之间）
+\end{compactitem}
+
+\section{本章小结}
+
+本章介绍了段落书写规范、字体样式、标题层级、列表环境、
+交叉引用和特殊字符的使用方法。
+第~\ref{chap:math}~章将介绍数学公式和定理环境的写法，
+这是核物理论文中最常用的排版功能之一。

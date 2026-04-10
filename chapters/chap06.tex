@@ -1,0 +1,219 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第六章：高级功能
+% 本章介绍代码块、算法伪代码、附录，以及常见错误解决方法。
+% ============================================================
+
+\chapter{高级功能}\label{chap:advanced}
+
+\section{代码块}
+
+使用 \texttt{listings} 宏包插入带语法高亮的代码，该宏包已包含在模板中。
+
+\subsection{行内代码}
+
+短代码片段可用 \verb|\verb| 命令：
+\begin{verbatim}
+使用 \verb|\cite{key}| 引用文献。
+\end{verbatim}
+
+\subsection{代码块环境}
+
+较长的代码使用 \texttt{lstlisting} 环境：
+
+\begin{verbatim}
+\begin{lstlisting}[language=Python, caption={数据处理脚本}]
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('spectrum.dat')
+energy = data[:, 0]
+counts = data[:, 1]
+
+plt.plot(energy, counts)
+plt.xlabel('Energy (MeV)')
+plt.ylabel('Counts')
+plt.savefig('spectrum.pdf')
+\end{lstlisting}
+\end{verbatim}
+
+效果：
+
+\begin{lstlisting}[language=Python, caption={能谱数据处理脚本示例}]
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('spectrum.dat')
+energy = data[:, 0]
+counts = data[:, 1]
+
+plt.plot(energy, counts)
+plt.xlabel('Energy (MeV)')
+plt.ylabel('Counts')
+plt.savefig('spectrum.pdf')
+\end{lstlisting}
+
+支持的语言包括：\texttt{Python}、\texttt{C}、\texttt{C++}、\texttt{Fortran}、
+\texttt{Matlab}、\texttt{bash} 等。
+
+\subsection{从文件插入代码}
+
+如果代码较长，可以直接读取外部文件：
+
+\begin{verbatim}
+\lstinputlisting[language=C++,
+    caption={主程序}]{code/main.cpp}
+\end{verbatim}
+
+\section{算法伪代码}
+
+使用 \texttt{algorithm2e} 环境排版算法伪代码，该宏包已包含在模板中。
+
+\begin{verbatim}
+\begin{algorithm}[H]
+\caption{蒙特卡洛模拟算法}
+\SetAlgoLined
+初始化粒子位置和动量\;
+\While{未达到收敛条件}{
+    随机抽样粒子初始状态\;
+    \For{每个粒子}{
+        跟踪粒子在介质中的传输\;
+        记录能量沉积\;
+    }
+    统计能谱分布\;
+}
+输出模拟结果\;
+\end{algorithm}
+\end{verbatim}
+
+效果：
+
+\normalem
+\begin{algorithm}[H]
+\caption{蒙特卡洛模拟算法}
+\SetAlgoLined
+初始化粒子位置和动量\;
+\While{未达到收敛条件}{
+    随机抽样粒子初始状态\;
+    \For{每个粒子}{
+        跟踪粒子在介质中的传输\;
+        记录能量沉积\;
+    }
+    统计能谱分布\;
+}
+输出模拟结果\;
+\end{algorithm}
+\ULforem
+
+常用算法命令：
+\begin{compactitem}
+    \item \verb|\While{条件}{内容}|：while 循环
+    \item \verb|\For{条件}{内容}|：for 循环
+    \item \verb|\If{条件}{内容}|：if 语句
+    \item \verb|\eIf{条件}{then}{else}|：if-else 语句
+    \item \verb|\KwIn{输入}|、\verb|\KwOut{输出}|：输入输出说明
+    \item 行末加 \verb|\;|：表示语句结束（显示分号）
+\end{compactitem}
+
+\section{附录}
+
+附录适合放置篇幅较大的推导过程、原始数据、程序源码等内容，
+正文中不必展开但有参考价值的材料。
+
+在 \texttt{main.tex} 中取消附录的注释：
+\begin{verbatim}
+\backmatter
+\input{chapters/appendix}      % 取消此行注释以启用附录
+\input{chapters/acknowledgements}
+\end{verbatim}
+
+在 \texttt{chapters/appendix.tex} 中写附录内容：
+\begin{verbatim}
+\chapter{附录标题}\label{app:label}
+
+附录中的图表公式另编排序号，如 A.1, A.2...
+与正文分开编号，自动处理。
+\end{verbatim}
+
+\section{物理量和单位}
+
+核物理论文中常用的特殊写法：
+
+\begin{compactitem}
+    \item 核素符号：\verb|$^{208}$Pb| → $^{208}$Pb；\verb|$^{16}$O| → $^{16}$O
+    \item 能量单位：MeV、MeV/$c^2$（质量）、MeV/$c$（动量）
+    \item 截面单位：\verb|mb（毫靶）| 或 \verb|fm$^2$|；$1$ b $= 10^{-24}$ cm$^2$
+    \item 运动量符号：\verb|$Q$值|、\verb|$\sigma$截面|（需要在公式中定义）
+    \item 数量级：\verb|$1.5 \times 10^{-3}$| → $1.5 \times 10^{-3}$（不用 E-3）
+\end{compactitem}
+
+\section{常见编译错误及解决方法}
+
+\subsection{undefined control sequence（未定义命令）}
+
+\textbf{原因}：使用了未加载的宏包中的命令，或命令拼写有误。
+
+\textbf{解决}：检查命令拼写；确认相关宏包已在 \texttt{main.tex} 或 \texttt{ustcextra.sty} 中加载。
+
+\subsection{Overfull \\hbox（行超出版心）}
+
+\textbf{原因}：某段文字或公式太长，\LaTeX{} 无法正常断行。
+
+\textbf{解决}：
+\begin{compactitem}
+    \item 在超长英文单词中手动添加断词提示：\verb|\-|，如 \verb|super\-con\-duc\-tor|
+    \item 表格列宽过窄时改用 \texttt{p\{宽度\}} 列格式
+    \item 长公式使用 \texttt{align} 环境换行
+\end{compactitem}
+
+\subsection{参考文献不显示 / 显示 [?]}
+
+\textbf{原因}：未运行 BibTeX，或 key 不匹配。
+
+\textbf{解决}：
+\begin{compactenum}
+    \item 确认已按顺序运行：\texttt{xelatex → bibtex → xelatex → xelatex}
+    \item 检查 \texttt{bib/refs.bib} 中的 key 与 \verb|\cite{key}| 完全一致（区分大小写）
+    \item 确认 \texttt{main.tex} 中 \verb|\bibliography{bib/refs}| 路径正确
+\end{compactenum}
+
+\subsection{图片未找到}
+
+\textbf{原因}：文件路径或文件名有误。
+
+\textbf{解决}：
+\begin{compactitem}
+    \item 确认图片在 \texttt{figures/} 目录下
+    \item 文件名不含中文和空格
+    \item 在 \verb|\includegraphics{文件名}| 中只写文件名，不写 \texttt{figures/} 前缀（已在 \texttt{main.tex} 中通过 \verb|\graphicspath| 配置）
+\end{compactitem}
+
+\subsection{字体警告 / 找不到字体}
+
+\textbf{原因}：系统中缺少所需中文字体。
+
+\textbf{解决}：确保 \texttt{main.tex} 文档类选项中有 \texttt{AutoFakeFont=true}（默认已添加），
+该选项在缺少字体时自动合成加粗/斜体，避免报错。
+
+\section{有用的写作技巧}
+
+\begin{compactitem}
+    \item \textbf{快速查找符号}：访问 \texttt{detexify.kirelabs.org}，手写符号即可识别对应命令。
+    \item \textbf{段落过长警告}：编译时出现 \texttt{Underfull \\hbox} 通常无害，可忽略。
+    \item \textbf{保持源码整洁}：每个句子单独一行，便于 Git 追踪修改和与导师协作。
+    \item \textbf{备份}：推荐用 Git 管理论文版本，每次重大修改提交一次，永远不会丢失。
+\end{compactitem}
+
+\section{本章小结}
+
+本章介绍了代码块、算法伪代码、附录的使用方法，
+以及核物理论文中常用的符号写法和常见编译错误的解决方案。
+至此，本使用说明涵盖了论文写作的主要排版功能。
+
+在正式撰写论文时，请将各章节中的说明性内容替换为你自己的研究内容。
+如有疑问，可参考 \texttt{README.md} 中的常见问题部分，
+或查阅《\LaTeX{} 入门》（lshort-zh-cn）文档。

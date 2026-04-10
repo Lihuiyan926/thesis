@@ -1,0 +1,161 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第一章：快速开始
+% 本章介绍模板的基本使用方法，适合从未接触过 LaTeX 的读者。
+% 写正式论文时，请将本章内容替换为你的绪论。
+% ============================================================
+
+\chapter{快速开始}\label{chap:quickstart}
+
+\section{模板背景与优势}
+
+本模板为中国原子能科学研究院（CIAE）学位论文 \LaTeX{} 排版模板，
+适用于硕士与博士研究生撰写学位论文。
+模板基于中国科学技术大学的 ustcthesis 文档类，
+针对院内格式规范对封面样式、页眉页脚、参考文献格式进行了修改。
+
+使用 \LaTeX{} 撰写论文的主要优势：
+
+\begin{compactitem}
+    \item \textbf{格式与内容分离}：模板自动处理所有排版格式，作者只需专注于写作内容。
+    \item \textbf{公式排版精美}：数学公式是 \LaTeX{} 的强项，核物理公式、矩阵、积分均可高质量输出。
+    \item \textbf{参考文献自动化}：添加文献到 \texttt{.bib} 文件后，编号和格式全部自动生成。
+    \item \textbf{编号自动更新}：插入或删除图、表、章节后，所有引用编号自动重新计算。
+    \item \textbf{版本管理友好}：纯文本文件，可用 Git 进行版本控制，方便与导师协作修改。
+\end{compactitem}
+
+\section{模板文件结构}
+
+使用本模板时，你主要需要接触以下文件：
+
+\begin{compactitem}
+    \item \texttt{main.tex}：\textbf{主文件}，填写封面信息，控制章节组织。每次修改后需重新编译。
+    \item \texttt{chapters/abstract.tex}：填写中英文摘要和关键词。
+    \item \texttt{chapters/chap01.tex} 至 \texttt{chap0X.tex}：论文各章正文，在这里写你的内容。
+    \item \texttt{bib/refs.bib}：参考文献数据库，在这里添加所有参考文献。
+    \item \texttt{figures/}：存放论文中的图片（支持 \texttt{.pdf}、\texttt{.eps}、\texttt{.png}、\texttt{.jpg}）。
+    \item \texttt{chapters/acknowledgements.tex}：致谢。
+    \item \texttt{chapters/publications.tex}：攻读学位期间发表的论文列表。
+\end{compactitem}
+
+以下文件定义模板格式，\textbf{一般不需要修改}：
+
+\begin{compactitem}
+    \item \texttt{ustcthesis.cls}：文档类，定义页面、字体、标题、页眉页脚等全部格式。
+    \item \texttt{ustcextra.sty}：扩展宏包，提供定理、代码、算法等环境。
+    \item \texttt{gbt7714-numerical.bst}：参考文献样式（国标 GB/T 7714 顺序编码制）。
+\end{compactitem}
+
+\section{填写封面信息}
+
+打开 \texttt{main.tex}，找到封面信息填写区，修改以下命令：
+
+\begin{compactitem}
+    \item \verb|\classnum{...}|：中图分类号，如 \verb|\classnum{O571.6}|。
+    \item \verb|\secretlevel{...}|：密级，填写"非密"、"内部"、"秘密"或"机密"之一，如 \verb|\secretlevel{非密}|。
+    \item \verb|\title{...}|：论文中文题目，不超过35个汉字。
+    \item \verb|\author{...}|：作者姓名。姓名之间用 \verb|~| 分隔可调整间距，如 \verb|\author{张~三}|。
+    \item \verb|\major{...}|：学科专业名称，如"粒子物理与原子核物理"。
+    \item \verb|\advisor{...}|：导师姓名。
+    \item \verb|\depart{...}|：导师职称，如"研究员"。
+\end{compactitem}
+
+如需英文封面，取消以下几行注释并填写：
+\begin{verbatim}
+\entitle{Research on XXX Based on XXXX}
+\enauthor{Zhang San}
+\enmajor{Particle Physics and Nuclear Physics}
+\enadvisor{Prof. Li Si}
+\end{verbatim}
+
+\subsection{切换学位类型}
+
+在 \texttt{main.tex} 第一行修改文档类选项：
+
+\begin{verbatim}
+% 硕士论文（默认）
+\documentclass[master,chinese,pdf,AutoFakeFont=true]{ustcthesis}
+
+% 博士论文
+\documentclass[doctor,chinese,pdf,AutoFakeFont=true]{ustcthesis}
+
+% 打印版（双面打印，链接为黑色）
+\documentclass[master,chinese,print,AutoFakeFont=true]{ustcthesis}
+\end{verbatim}
+
+\section{如何编译}
+
+本模板已在以下环境测试通过：
+\begin{compactitem}
+    \item \textbf{Windows + TeX Live 2023 + VS Code + LaTeX Workshop}
+    \item \textbf{WSL Ubuntu + TeX Live}（支持 \texttt{make}）
+\end{compactitem}
+
+\LaTeX{} 需要"编译"才能生成 PDF。本模板需要按顺序运行4步：
+
+\begin{verbatim}
+xelatex main   % 第一遍：生成辅助文件
+bibtex main    % 处理参考文献
+xelatex main   % 第二遍：插入参考文献
+xelatex main   % 第三遍：更新所有编号
+\end{verbatim}
+
+\textbf{必须运行4次}才能保证目录、参考文献编号、交叉引用全部正确。
+
+\subsection{使用 VS Code + LaTeX Workshop（推荐）}
+
+\begin{compactenum}
+    \item 安装 TeX Live（完整版），安装 VS Code 及 LaTeX Workshop 插件。
+    \item 用 VS Code 打开模板根目录，打开 \texttt{main.tex}。
+    \item 按 \texttt{Ctrl+Alt+B}，在弹出菜单中选择 Recipe：
+          \textbf{xelatex → bibtex → xelatex → xelatex}。
+    \item 编译完成后，按 \texttt{Ctrl+Alt+V} 预览 PDF。
+\end{compactenum}
+
+\subsection{使用 latexmk 自动编译}
+
+模板根目录下的 \texttt{.latexmkrc} 文件配置了 \texttt{latexmk} 的编译规则，
+使其自动以 \texttt{xelatex} 引擎完成完整的编译流程。
+在终端中执行：
+
+\begin{verbatim}
+latexmk main
+\end{verbatim}
+
+\textbf{注意：\texttt{.latexmkrc} 文件不能删除。}
+若缺少该文件，\texttt{latexmk} 将默认使用 \texttt{latex} 引擎，
+导致中文无法正确编译（乱码或报错）。
+
+\section{添加新章节}
+
+如需增加章节：
+
+\begin{compactenum}
+    \item 在 \texttt{chapters/} 目录下新建文件，如 \texttt{chap07.tex}，内容结构如下：
+\begin{verbatim}
+\chapter{你的章节标题}\label{chap:标识符}
+
+\section{第一节}
+正文内容……
+
+\section{本章小结}
+本章介绍了……
+\end{verbatim}
+    \item 在 \texttt{main.tex} 的 \verb|\mainmatter| 区域添加一行：
+\begin{verbatim}
+\input{chapters/chap07}
+\end{verbatim}
+\end{compactenum}
+
+\textbf{命名建议}：\verb|\label| 中的标识符用英文，如 \verb|chap:theory|、\verb|chap:experiment|，
+以便后续用 \verb|\ref{chap:theory}| 引用章节编号。
+
+\section{本章小结}
+
+本章介绍了模板的背景、文件结构、封面信息填写、编译方法及章节添加方式。
+第~\ref{chap:typesetting}~章将介绍正文排版的基本用法，
+包括段落书写、标题层级、列表和交叉引用。

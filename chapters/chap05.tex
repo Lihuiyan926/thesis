@@ -1,0 +1,197 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第五章：参考文献
+% 本章介绍 BibTeX 文献管理和引用方法。
+% ============================================================
+
+\chapter{参考文献}\label{chap:references}
+
+\section{参考文献格式规范}
+
+本院格式规范要求：
+\begin{compactitem}
+    \item 参考文献按在正文中出现的顺序编号，如 \cite{MARTIN20131497}。
+    \item 引用标号置于所引内容最后一个字右上角。
+    \item 所有被引用文献必须列入参考文献，同一篇文献只用一个序号。
+    \item 参考文献内容使用小四号宋体，1.25倍行距。
+\end{compactitem}
+
+\section{BibTeX 文件格式}
+
+参考文献存放在 \texttt{bib/refs.bib} 文件中，每条文献是一个条目，格式如下：
+
+\subsection{期刊论文（article）}
+
+\begin{verbatim}
+@article{引用key,
+    author  = {作者1 and 作者2 and 作者3},
+    title   = {论文题目},
+    journal = {期刊名},
+    year    = {2023},
+    volume  = {100},
+    number  = {1},
+    pages   = {1--10},
+    doi     = {10.xxxx/xxxxx}
+}
+\end{verbatim}
+
+示例（本模板 \texttt{bib/refs.bib} 中已有的条目）：
+\begin{verbatim}
+@article{MARTIN20131497,
+    author  = {M.J. Martin},
+    title   = {Nuclear Data Sheets for A = 152},
+    journal = {Nuclear Data Sheets},
+    year    = {2013},
+    volume  = {114},
+    pages   = {1497--1847}
+}
+\end{verbatim}
+
+\subsection{学位论文（phdthesis / mastersthesis）}
+
+\begin{verbatim}
+@phdthesis{张三2023,
+    author = {张三},
+    title  = {基于XXXX方法的核反应截面研究},
+    school = {中国原子能科学研究院},
+    year   = {2023},
+    type   = {博士学位论文}
+}
+
+@mastersthesis{李四2022,
+    author = {李四},
+    title  = {XXX实验方案设计},
+    school = {中国原子能科学研究院},
+    year   = {2022}
+}
+\end{verbatim}
+
+\subsection{书籍（book）}
+
+\begin{verbatim}
+@book{Blatt1952,
+    author    = {Blatt, John M. and Weisskopf, Victor F.},
+    title     = {Theoretical Nuclear Physics},
+    publisher = {Springer},
+    address   = {New York},
+    year      = {1952}
+}
+\end{verbatim}
+
+\subsection{会议论文（inproceedings）}
+
+\begin{verbatim}
+@inproceedings{Wang2022,
+    author    = {Wang, X. and Zhang, Y.},
+    title     = {Title of the Paper},
+    booktitle = {Proceedings of the International Conference on ...},
+    year      = {2022},
+    pages     = {100--105}
+}
+\end{verbatim}
+
+\section{引用命令}
+
+本模板提供两种引用命令，对应院格式规范中的两种标注方式：
+
+\begin{compactitem}
+    \item \verb|\cite{key}|：行内引用，编号以方括号形式嵌入正文，
+          效果如 \cite{KIBEDI200235}，适合"由文献[X]可知……"的写法。
+    \item \verb|\upcite{key}|：上标引用，编号以上标方括号形式出现，
+          效果如\upcite{MARTIN20131497}，适合在句末或词后标注，
+          是本院格式规范中最常用的引用形式。
+\end{compactitem}
+
+\verb|\upcite| 是本模板在 \texttt{main.tex} 中自定义的命令：
+\begin{verbatim}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\end{verbatim}
+
+引用多篇文献时，用英文逗号分隔多个 key，编号将自动合并：
+\begin{verbatim}
+\cite{key1,key2,key3}      % 行内，效果：[1,2,3]
+\upcite{key1,key2,key3}    % 上标，效果：[1,2,3]（上标）
+\end{verbatim}
+实际效果：\cite{MARTIN20131497,KIBEDI200235}（行内）；\upcite{MARTIN20131497,KIBEDI200235}（上标）。
+
+格式规范示例：
+
+\begin{verbatim}
+% 上标引用（推荐，句末标注）
+二次铣削\upcite{ref1}可以显著提高表面质量。
+原位生成的TiB主要有针状或晶须状\upcite{ref2,ref3}。
+
+% 行内引用（用于"由文献[X]可知"句式）
+由文献\cite{ref4,ref5}可知，蠕变断裂以沿晶断裂为主。
+\end{verbatim}
+
+\section{如何获取 BibTeX 条目}
+
+不需要手动输入每条文献，可以从数据库直接导出：
+
+\subsection{从 Google Scholar 导出}
+
+\begin{compactenum}
+    \item 搜索文献，点击文献下方的引号图标（引用）。
+    \item 在弹出窗口底部点击"BibTeX"。
+    \item 复制全部内容，粘贴到 \texttt{bib/refs.bib} 文件中。
+\end{compactenum}
+
+\subsection{从 CNKI（知网）导出}
+
+\begin{compactenum}
+    \item 搜索文献，勾选需要的文献。
+    \item 点击"导出与分析" → "导出文献"。
+    \item 选择"BibTeX"格式，下载并合并到 \texttt{refs.bib}。
+\end{compactenum}
+
+\subsection{从 Web of Science / Scopus 导出}
+
+\begin{compactenum}
+    \item 选中文献，点击"导出"（Export）。
+    \item 选择"BibTeX"格式并下载。
+\end{compactenum}
+
+\subsection{使用 JabRef 管理文献}
+
+JabRef 是一款开源的 BibTeX 文献管理工具，可图形化管理 \texttt{.bib} 文件，
+支持从 DOI、arXiv、ISBN 自动填充文献信息，强烈推荐使用。
+
+\section{引用 key 的命名建议}
+
+BibTeX 的 key（如 \texttt{MARTIN20131497}）用于在正文中引用，
+建议采用统一的命名规则：
+
+\begin{compactitem}
+    \item 英文文献：\texttt{作者姓+年份}，如 \texttt{Blatt1952}
+    \item 中文文献：\texttt{作者姓+年份}，如 \texttt{张三2023}
+    \item 同一作者同一年多篇：加字母区分，如 \texttt{Wang2022a}、\texttt{Wang2022b}
+\end{compactitem}
+
+\textbf{注意}：key 不能含有中文，不能含有空格，区分大小写。
+
+\section{参考文献样式}
+
+本模板默认使用 GB/T 7714 顺序编码制（数字引用）：
+
+\begin{verbatim}
+% main.tex 中的设置（默认）
+\bibliographystyle{gbt7714-numerical}
+\bibliography{bib/refs}
+\end{verbatim}
+
+如需切换为著者-出版年制（如"[张三, 2023]"形式），修改为：
+
+\begin{verbatim}
+\bibliographystyle{ustcauthoryear}
+\end{verbatim}
+
+\section{本章小结}
+
+本章介绍了 BibTeX 文件的格式、各类文献的写法、引用命令的使用，
+以及从主流数据库导出文献条目的方法。
+第~\ref{chap:advanced}~章将介绍代码块、算法和其他高级排版功能。

@@ -1,0 +1,258 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第四章：图片与表格
+% 本章介绍图片插入、表格制作和浮动体的使用方法。
+% ============================================================
+
+\chapter{图片与表格}\label{chap:floats}
+
+\section{插入图片}
+
+\subsection{基本用法}
+
+图片使用 \texttt{figure} 浮动环境，\LaTeX{} 会自动选择最合适的位置放置：
+
+\begin{verbatim}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{你的图片文件名}
+    \bicaption{中文图题}{English caption}
+    \label{fig:示例}
+\end{figure}
+\end{verbatim}
+
+实际效果如图~\ref{fig:ion}~所示：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ion}
+    \bicaption{离子示意图}{Schematic diagram of ions}
+    \label{fig:ion}
+\end{figure}
+
+如图~\ref{fig:lcn}~所示：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{lcn}
+    \bicaption{lcn示意图}{Schematic diagram of lcn}
+    \label{fig:lcn}
+\end{figure}
+
+\textbf{参数说明：}
+
+\begin{compactitem}
+    \item \verb|[htbp]|：位置选项，依次尝试当前位置（h）、页面顶部（t）、底部（b）、单独页面（p）。
+    \item \verb|\centering|：图片居中。
+    \item \verb|width=0.6\textwidth|：图片宽度为版心宽度的60\%，可按需调整。
+    \item \verb|\bicaption{中文}{英文}|：本模板要求中英双语图题（格式规范要求）。
+    \item \verb|\label{fig:示例}|：标签，用于 \verb|\ref{fig:示例}| 引用。
+\end{compactitem}
+
+\textbf{图片格式建议：}
+\begin{compactitem}
+    \item 矢量图（折线图、柱状图等）：优先使用 \texttt{.pdf} 或 \texttt{.eps}，缩放不失真。
+    \item 位图（照片、实验截图）：使用 \texttt{.png}（无损）或 \texttt{.jpg}，分辨率建议 $\geq$ 300 DPI。
+    \item 文件名不含中文和空格，如 \texttt{detector\_setup.pdf}。
+    \item 所有图片放在 \texttt{figures/} 目录下，引用时只写文件名，不写路径和扩展名。
+\end{compactitem}
+
+\subsection{调整图片大小}
+
+\begin{verbatim}
+\includegraphics[width=0.8\textwidth]{图片名}    % 按版心宽度比例
+\includegraphics[height=5cm]{图片名}             % 按固定高度
+\includegraphics[scale=0.5]{图片名}              % 按缩放比例
+\end{verbatim}
+
+\subsection{图的引用规范}
+
+正文中必须有对图的提示，引用方式：
+
+\begin{verbatim}
+如图~\ref{fig:detector}~所示，探测器由三层构成。
+图~\ref{fig:spectrum}~为实验测量的能谱。
+\end{verbatim}
+
+\section{三线表（推荐格式）}
+
+格式规范推荐使用三线表：只有顶线、栏目线和底线，无竖线。
+使用 \texttt{booktabs} 宏包提供的命令（已包含在模板中）：
+
+\begin{verbatim}
+\begin{table}[H]
+\centering
+\bicaption{表题中文}{Table caption in English}
+\label{tab:示例}
+\begin{tabular}{lccc}
+\toprule                              % 顶线（粗）
+列标题1 & 列标题2 & 列标题3 & 列标题4 \\
+\midrule                              % 栏目线（细）
+数据1   & 数据2   & 数据3   & 数据4   \\
+数据5   & 数据6   & 数据7   & 数据8   \\
+\bottomrule                           % 底线（粗）
+\end{tabular}
+\end{table}
+\end{verbatim}
+
+示例——实验参数表：
+
+\begin{table}[H]
+\centering
+\bicaption{实验束流参数}{Beam parameters of the experiment}
+\label{tab:beam}
+\begin{tabular}{lcc}
+\toprule
+参数 & 数值 & 单位 \\
+\midrule
+束流能量 & 100 & MeV \\
+束流强度 & $1 \times 10^6$ & pps \\
+靶厚 & 2.0 & mg/cm$^2$ \\
+探测角度 & 15--150 & 度 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+如表~\ref{tab:beam}~所示，束流能量为100 MeV。
+
+\textbf{列格式说明（tabular参数）：}
+\begin{compactitem}
+    \item \texttt{l}：左对齐；\texttt{c}：居中；\texttt{r}：右对齐
+    \item \texttt{p\{3cm\}}：固定宽度列，超出自动换行
+    \item 竖线 \verb+|+ 可加列分隔线（三线表不使用）
+\end{compactitem}
+
+\section{带脚注的表格}
+
+对表中数据需要补充说明时，使用 \texttt{threeparttable} 环境：
+
+\begin{verbatim}
+\begin{table}[H]
+\centering
+\bicaption{带脚注的表格示例}{Table with footnotes}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+方法 & $\beta_3$ & $\delta_3$ (fm) \\
+\midrule
+电子散射\tnote{$a$} & 0.120 & 0.85 \\
+$\alpha$散射\tnote{$b$}  & 0.118 & 0.84 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+    \item[$a$] 束流能量75 MeV。
+    \item[$b$] 束流能量79.1 MeV。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\bicaption{$^{208}$Pb 形变参数的不同测量方法对比}{Comparison of $^{208}$Pb deformation parameters from different methods}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+方法 & $\beta_3$ & $\delta_3$ (fm) \\
+\midrule
+电子散射\tnote{$a$} & 0.120 & 0.85 \\
+$\alpha$散射\tnote{$b$} & 0.118 & 0.84 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+    \item[$a$] 束流能量75 MeV。
+    \item[$b$] 束流能量79.1 MeV。
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\section{合并单元格}
+
+使用 \verb|\multicolumn| 合并横向单元格，\verb|\multirow| 合并纵向单元格（需要 \texttt{multirow} 宏包）：
+
+\begin{verbatim}
+\multicolumn{列数}{对齐}{内容}    % 横向合并
+\multirow{行数}{宽度}{内容}      % 纵向合并（需 \usepackage{multirow}）
+\end{verbatim}
+
+\section{图表的跨页处理}
+
+当表格过长需要跨页，使用 \texttt{longtable} 环境：
+
+\begin{verbatim}
+\begin{longtable}{lcc}
+\caption{跨页长表格}\label{tab:long} \\
+\toprule
+列1 & 列2 & 列3 \\
+\midrule
+\endfirsthead
+% 续页表头（格式规范要求续表重复表头）
+\multicolumn{3}{l}{\tablename~\thetable（续）} \\
+\toprule
+列1 & 列2 & 列3 \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+% 表格内容行
+数据1 & 数据2 & 数据3 \\
+% ... 更多行
+\end{longtable}
+\end{verbatim}
+
+\section{分图}
+
+含有分图时，分图题置于各分图之下，分图号用 a)、b) 表示，整图标题置于所有分图之后。
+使用 \texttt{subcaption} + \texttt{bicaption} 宏包（已在模板中载入），分图题支持中英双语：
+
+\begin{verbatim}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{图1}
+        \bisubcaption{中文分图题a}{English subcaption a}
+        \label{fig:sub-a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{图2}
+        \bisubcaption{中文分图题b}{English subcaption b}
+        \label{fig:sub-b}
+    \end{subfigure}
+    \bicaption{整图中文标题}{Overall English caption}
+    \label{fig:subfig}
+\end{figure}
+\end{verbatim}
+
+实际效果如图~\ref{fig:subfig-example}~所示：
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ion}
+        \bisubcaption{离子示意图}{Schematic diagram of ions}
+        \label{fig:sub-ion}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{lcn}
+        \bisubcaption{lcn示意图}{Schematic diagram of lcn}
+        \label{fig:sub-lcn}
+    \end{subfigure}
+    \bicaption{分图示例}{Example of subfigures}
+    \label{fig:subfig-example}
+\end{figure}
+
+\section{本章小结}
+
+本章介绍了图片插入、三线表制作、带脚注表格、合并单元格、
+跨页表格以及分图的使用方法。
+第~\ref{chap:references}~章将介绍参考文献的管理与引用。

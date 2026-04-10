@@ -1,0 +1,207 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+% ============================================================
+% 第三章：数学公式与定理
+% 本章介绍 LaTeX 数学排版，包括公式、符号速查和定理环境。
+% ============================================================
+
+\chapter{数学公式与定理}\label{chap:math}
+
+\section{行内公式}
+
+行内公式嵌入在正文中，用一对美元符号 \verb|$ $| 包围：
+
+\begin{verbatim}
+质子的静止质量为 $m_p = 938.3$ MeV/$c^2$。
+\end{verbatim}
+
+效果：质子的静止质量为 $m_p = 938.3$ MeV/$c^2$。
+
+常用行内公式写法：
+\begin{compactitem}
+    \item 下标：\verb|$a_i$| → $a_i$，上标：\verb|$E^2$| → $E^2$
+    \item 分数（行内）：\verb|$m/c^2$| → $m/c^2$（行内分数建议用斜线形式）
+    \item 希腊字母：\verb|$\alpha, \beta, \gamma$| → $\alpha, \beta, \gamma$
+    \item 向量（粗体）：\verb|$\mathbf{p}$| → $\mathbf{p}$
+\end{compactitem}
+
+\section{行间公式}
+
+行间公式独立成行，用 \texttt{equation} 环境，自动按章节编号：
+
+\begin{verbatim}
+\begin{equation}
+    E = mc^2
+    \label{eq:einstein}
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    E = mc^2
+    \label{eq:einstein}
+\end{equation}
+
+由式~(\ref{eq:einstein})~可知，质能等价。
+
+更复杂的示例——薛定谔方程：
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r}, t)
+    = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}, t) \right] \Psi(\mathbf{r}, t)
+    \label{eq:schrodinger}
+\end{equation}
+
+\textbf{格式规范}：按格式要求，公式序号右端对齐，
+\texttt{equation} 环境已自动处理。
+公式中第一次出现的物理量符号应在公式后用"式中"段落注释。
+
+\subsection{公式后的符号注释}
+
+格式规范要求对公式中的物理量进行说明，写法如下：
+
+\begin{verbatim}
+\begin{equation}
+    \sigma = \frac{I_0 - I}{I_0 N t}
+    \label{eq:cross_section}
+\end{equation}
+
+式中：$\sigma$——反应截面（cm$^2$）；\\
+\phantom{式中：}$I_0$——入射粒子数；\\
+\phantom{式中：}$I$——出射粒子数；\\
+\phantom{式中：}$N$——靶核数密度（cm$^{-3}$）；\\
+\phantom{式中：}$t$——靶厚（cm）。
+\end{verbatim}
+
+\begin{equation}
+    \sigma = \frac{I_0 - I}{I_0 N t}
+    \label{eq:cross_section}
+\end{equation}
+
+式中：$\sigma$——反应截面（cm$^2$）；\\
+\phantom{式中：}$I_0$——入射粒子数；\\
+\phantom{式中：}$I$——出射粒子数。
+
+\section{多行公式}
+
+当公式较长需要换行，或需要对齐多个等式时，使用 \texttt{align} 环境：
+
+\begin{verbatim}
+\begin{align}
+    Q &= (M_A + M_a - M_B - M_b)c^2  \label{eq:q_value} \\
+      &= T_B + T_b - T_a              \label{eq:q_kinetic}
+\end{align}
+\end{verbatim}
+
+\begin{align}
+    Q &= (M_A + M_a - M_B - M_b)c^2  \label{eq:q_value} \\
+      &= T_B + T_b - T_a              \label{eq:q_kinetic}
+\end{align}
+
+\verb|&| 表示对齐位置，\verb|\\| 换行。每行都有独立编号。
+
+如果不需要某行编号，在该行末尾加 \verb|\nonumber|：
+\begin{verbatim}
+\begin{align}
+    f(x) &= x^2 + 2x + 1  \nonumber \\
+         &= (x+1)^2       \label{eq:factor}
+\end{align}
+\end{verbatim}
+
+\section{矩阵}
+
+\begin{verbatim}
+\begin{equation}
+    \mathbf{A} = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn}
+    \end{pmatrix}
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    \mathbf{A} = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn}
+    \end{pmatrix}
+\end{equation}
+
+矩阵括号类型：
+\begin{compactitem}
+    \item \texttt{pmatrix}：圆括号 $(\,)$
+    \item \texttt{bmatrix}：方括号 $[\,]$
+    \item \texttt{vmatrix}：竖线（行列式）$|\,|$
+    \item \texttt{Bmatrix}：花括号 $\{\,\}$
+\end{compactitem}
+
+\section{常用数学符号速查}
+
+\subsection{希腊字母}
+
+\begin{table}[H]
+\centering
+\bicaption{常用希腊字母}{Common Greek letters}
+\begin{tabular}{llll|llll}
+\hline
+命令 & 符号 & 命令 & 符号 & 命令 & 符号 & 命令 & 符号 \\
+\hline
+\verb|\alpha|   & $\alpha$   & \verb|\Alpha|   & $A$       & \verb|\beta|    & $\beta$    & \verb|\gamma|   & $\gamma$ \\
+\verb|\delta|   & $\delta$   & \verb|\Delta|   & $\Delta$  & \verb|\epsilon| & $\epsilon$ & \verb|\theta|   & $\theta$ \\
+\verb|\lambda|  & $\lambda$  & \verb|\Lambda|  & $\Lambda$ & \verb|\mu|      & $\mu$      & \verb|\nu|      & $\nu$ \\
+\verb|\pi|      & $\pi$      & \verb|\Pi|      & $\Pi$     & \verb|\sigma|   & $\sigma$   & \verb|\Sigma|   & $\Sigma$ \\
+\verb|\phi|     & $\phi$     & \verb|\Phi|     & $\Phi$    & \verb|\psi|     & $\psi$     & \verb|\Psi|     & $\Psi$ \\
+\verb|\omega|   & $\omega$   & \verb|\Omega|   & $\Omega$  & \verb|\eta|     & $\eta$     & \verb|\xi|      & $\xi$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{常用运算符}
+
+\begin{compactitem}
+    \item 积分：\verb|\int_0^\infty f(x)dx| → $\int_0^\infty f(x)dx$
+    \item 求和：\verb|\sum_{i=1}^{n} a_i| → $\sum_{i=1}^{n} a_i$
+    \item 乘积：\verb|\prod_{i=1}^{n}| → $\prod_{i=1}^{n}$
+    \item 分数：\verb|\frac{分子}{分母}| → $\frac{a+b}{c}$
+    \item 根号：\verb|\sqrt{x}|, \verb|\sqrt[3]{x}| → $\sqrt{x}$, $\sqrt[3]{x}$
+    \item 偏微分：\verb|\partial| → $\partial$
+    \item 约等于：\verb|\approx| → $\approx$；正比于：\verb|\propto| → $\propto$
+    \item 向量算符：\verb|\nabla| → $\nabla$；\verb|\hbar| → $\hbar$
+\end{compactitem}
+
+\section{定理、引理与证明环境}
+
+模板在 \texttt{ustcextra.sty} 中预定义了以下环境：
+
+\begin{verbatim}
+定理:     \begin{theorem}...\end{theorem}
+引理:     \begin{lemma}...\end{lemma}
+推论:     \begin{corollary}...\end{corollary}
+定义:     \begin{definition}...\end{definition}
+命题:     \begin{proposition}...\end{proposition}
+注:       \begin{remark}...\end{remark}
+证明:     \begin{proof}...\end{proof}
+\end{verbatim}
+
+示例——一个简单的定理及其证明：
+
+\begin{theorem}
+    对于任意实数 $a$ 和 $b$，有 $(a+b)^2 = a^2 + 2ab + b^2$。
+\end{theorem}
+
+\begin{proof}
+    展开左边：$(a+b)^2 = (a+b)(a+b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$，
+    故等式成立。
+\end{proof}
+
+定理类环境按章节自动编号。在 \texttt{main.tex} 中可以用 \verb|\newtheorem| 自定义新的定理类环境。
+
+\section{本章小结}
+
+本章介绍了行内公式、行间公式、多行公式对齐、矩阵写法、
+常用数学符号以及定理环境的使用方法。
+第~\ref{chap:floats}~章将介绍图片和表格的插入与排版。
