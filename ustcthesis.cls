@@ -59,7 +59,7 @@
     \PassOptionsToClass{openany}{ctexbook}
 \fi
 \PassOptionsToPackage{no-math}{fontspec}
-\LoadClass[a4paper, UTF8, zihao=-4]{ctexbook}[2015/05/14]
+\LoadClass[a4paper, UTF8, zihao=-4, AutoFakeBold=2.5]{ctexbook}[2015/05/14]
 \@ifclasslater{ctexbook}{2015/05/14}{}{%
     \ClassError{ustcthesis}{%
         Requiring ctex 2.0 or later version!\MessageBreak
@@ -69,12 +69,33 @@
         See ustcthesis.pdf for more detailed update guide.
     }
 }
-\setmainfont{Times New Roman}
-\setsansfont{Arial}[BoldFont=Arial Black]
-\setmonofont{Courier New}
-\newfontfamily\abstitlefont{Times New Roman}[BoldFont=Times New Roman Bold]
-% \setCJKmainfont{\songti}
-% \renewcommand*{\songti}{\CJKfamily{zhsong}}
+% 西文字体：优先使用 Windows 原版，回退到 TeX Live 内置等宽替代
+\IfFontExistsTF{Times New Roman}{
+    \setmainfont{Times New Roman}
+    \newfontfamily\abstitlefont{Times New Roman}[BoldFont=Times New Roman Bold]
+}{
+    \setmainfont{TeX Gyre Termes}
+    \newfontfamily\abstitlefont{TeX Gyre Termes}[BoldFont=TeX Gyre Termes Bold]
+}
+\IfFontExistsTF{Arial}{
+    \setsansfont{Arial}[BoldFont=Arial Black]
+}{
+    \setsansfont{TeX Gyre Heros}
+}
+\IfFontExistsTF{Courier New}{
+    \setmonofont{Courier New}
+}{
+    \setmonofont{TeX Gyre Cursor}
+}
+% 中文主字体：优先使用 Windows 原版，回退到 TeX Live 内置 Fandol
+% 其余字族（黑体、仿宋、楷体）由 ctex fontset=auto 自动处理
+\IfFontExistsTF{SimSun}{
+    \setCJKmainfont{SimSun}[AutoFakeBold=2.5]
+    \setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold=2.5]
+}{
+    \setCJKmainfont{FandolSong}[AutoFakeBold=2.5]
+    \setCJKfamilyfont{zhsong}{FandolSong}[AutoFakeBold=2.5]
+}
 \RequirePackage{hyperref}
 \hypersetup{
     bookmarksopen=true,
@@ -115,9 +136,19 @@
 \ustc@define@term{author}
 \ustc@define@term{depart}
 \ustc@define@term{major}
+\ustc@define@term{degree}
+\ifustc@opt@doctor\degree{博士}\else\degree{硕士}\fi
 \ustc@define@term{advisor}
 \ustc@define@term{coadvisor}
+\ustc@define@term{codepart}
 \ustc@define@term{submitdate}
+\ustc@define@term{defensedate}
+\ustc@define@term{grantdate}
+\ustc@define@term{chairman}
+\ustc@define@term{reviewer}
+\ustc@define@term{classnum}
+\ustc@define@term{secretlevel}
+\ustc@define@term{coverdate}
 \ustc@define@term{entitle}
 \ustc@define@term{ensecrettext}
 \ustc@define@term{enauthor}
@@ -137,7 +168,7 @@
 \else
   \renewcommand\contentsname{%
   \vspace*{19.85bp}% 段前间距19.85磅(1bp≈1/72英寸)
-  {\sffamily\zihao{3}目\zhspace 录}% 黑体3号字
+  {\heiti\zihao{3}目\zhspace 录}% 黑体3号字
   \vspace{-5pt}% 段后间距0cm
   }
   \newcommand\ustc@pdf@contentsname{目录}
@@ -146,7 +177,7 @@
   \newcommand\ustc@notesname{\textbf{注}：}
   \newcommand\ustc@acknowledgementsname{致\hspace{\ccwd}谢}
   \newcommand\ustc@pdf@acknowledgementsname{致谢}
-  \newcommand\ustc@publicationsname{在读期间发表的学术论文与取得的研究成果}
+  \newcommand\ustc@publicationsname{攻读博（硕）士学位期间已发表或录用的论文}
   \newcommand\ustc@notationname{符号说明}
   \def\equationautorefname~#1\null{公式~(#1)\null}%
   \def\footnoteautorefname{脚注}%
@@ -173,24 +204,30 @@
     footskip=0.75cm}
 \RequirePackage[pagestyles]{titlesec}
 \RequirePackage[justification=centering]{caption}
-\RequirePackage{bicaption}
+\RequirePackage{subcaption}
+\RequirePackage[list=off]{bicaption}
+% 分图编号格式：a)、b)（labelformat=simple 避免 subcaption 再套括号）
+\renewcommand\thesubfigure{\alph{subfigure})}
+\captionsetup[subfigure]{labelformat=simple}
 \DeclareCaptionFont{ks}{\kaishu}
 \DeclareCaptionFont{tmr}{\abstitlefont}
-\captionsetup[figure][bi-first]{name=图,font={small,ks,stretch=1}}
-\captionsetup[figure][bi-second]{name=Fig.,font={small,stretch=1}}
-
-% 2. 配置双语标题
-
-
-\captionsetup[table][bi-first]{name=表,font={small,ks,stretch=1}}
-\captionsetup[table][bi-second]{name=Table,font={small,stretch=1}}
+\DeclareCaptionFont{wuhao}{\zihao{5}}
+\captionsetup[figure][bi-first]{name=图,font={wuhao,ks,stretch=1}}
+\captionsetup[figure][bi-second]{name=Fig.,font={wuhao,stretch=1}}
+\captionsetup[table][bi-first]{name=表,font={wuhao,ks,stretch=1}}
+\captionsetup[table][bi-second]{name=Table,font={wuhao,stretch=1}}
 \usepackage{fancyhdr}
 %自定义命令 固定长度下划线
 \newcommand\ful[2][4cm]{\uline{\makebox[#1][c]{#2}}}
 
+\ifustc@opt@doctor
+    \newcommand\ustc@degree@header{中国原子能科学研究院博士学位论文}
+\else
+    \newcommand\ustc@degree@header{中国原子能科学研究院硕士学位论文}
+\fi
 \ifustc@opt@bachelor
     \newcommand\ustc@header@size{\zihao{-5}}
-    \newcommand\ustc@main@header{中国原子能科学研究院硕士学位论文}
+    \newcommand\ustc@main@header{\ustc@degree@header}
 \else
     \newcommand\ustc@header@size{\zihao{-5}}
     \newcommand\ustc@main@header{%
@@ -204,8 +241,8 @@
         % \rhead{\zihao{5} \thepage}
         \fancyhf{} % 先清空所有页眉页脚
 
-        \fancyhead[CE]{\zihao{-5} 中国原子能科学研究院博（硕）士学位论文}
-        \fancyhead[CO]{\zihao{-5} 中国原子能科学研究院博（硕）士学位论文}
+        \fancyhead[CE]{\zihao{-5} \ustc@degree@header}
+        \fancyhead[CO]{\zihao{-5} \ustc@degree@header}
 
         \fancyfoot[CE,CO]{\thepage}
         \renewcommand{\headrule}{%
@@ -218,8 +255,8 @@
         %\sethead{}{\ustc@main@header}{}
         \setfoot[\thepage][][]{}{}{\thepage}
         \pagestyle{fancy}
-        \fancyhead[CE]{\zihao{-5} 中国原子能科学研究院博（硕）士学位论文}
-        \fancyhead[CO]{\zihao{-5} 中国原子能科学研究院博（硕）士学位论文}
+        \fancyhead[CE]{\zihao{-5} \ustc@degree@header}
+        \fancyhead[CO]{\zihao{-5} \ustc@degree@header}
         \renewcommand{\headrule}{%
         \hrule height2.25pt width\headwidth%
         \vskip 1pt%
@@ -267,13 +304,13 @@
     \restoregeometry
     \ifustc@opt@bachelor\relax\else
         \ifustc@opt@pdf\relax\else%
-            \make@statement \cleardoublepage
+            % \make@statement \cleardoublepage  % print 模式下不输出原创性声明和授权使用声明
         \fi
     \fi
     \pagestyle{main}%
 }
 \ifustc@opt@doctor
-    \newcommand\ustc@thesisname{学\zhspace 位\zhspace 论\zhspace 文}%
+    \newcommand\ustc@thesisname{学\hspace{10pt}  位\hspace{10pt}  论\hspace{10pt}  文}%
     \newcommand\ustc@enthesisname{A dissertation for doctor's degree}%
 \else
     \ifustc@opt@master
@@ -289,48 +326,94 @@
     \tikz[remember picture,overlay]%
         \node [yshift=-#1] at (current page.north) [below,align=flush center]%
             {\parbox{\textwidth}{\centering#2}};}
+% 评阅人多行下划线：逐行绘制，确保每行（含最后一行）都有下划线
+\newdimen\ustc@ul@depth
+\newdimen\ustc@ul@thick
+\newcommand{\ustc@reviewer@box}[1]{%
+    \begingroup\songti\zihao{4}\bfseries%
+    \ustc@ul@depth=8pt%
+    \setlength\ustc@ul@thick{\ULthickness}%
+    \setbox\z@=\hbox{一}%
+    \dimen@=\ht\z@\advance\dimen@\dp\z@\advance\dimen@\ustc@ul@depth% 第一条线距顶部距离
+    \setbox\@tempboxa=\vtop{%
+        \hsize=#1\parindent=\z@\parskip=\z@%
+        \noindent\ustc@reviewer\par%
+    }%
+    \@tempdima=\ht\@tempboxa\advance\@tempdima\dp\@tempboxa%
+    % 计算行数：floor(总高/行距) + 1
+    \@tempcnta=\@tempdima%      总高（sp）
+    \@tempcntb=\baselineskip%   行距（sp）
+    \divide\@tempcnta by\@tempcntb%
+    \advance\@tempcnta\@ne%
+    \leavevmode%
+    \hbox{%
+        \lower\dp\@tempboxa\vbox to\@tempdima{%
+            \vskip\dimen@%
+            \hrule height\z@ depth\ustc@ul@thick width#1%
+            \advance\@tempcnta-\@ne% 已画第一条，剩余行数
+            \loop\ifnum\@tempcnta>\z@%
+                \vskip\dimexpr\baselineskip-\ustc@ul@thick\relax%
+                \hrule height\z@ depth\ustc@ul@thick width#1%
+                \advance\@tempcnta-\@ne%
+            \repeat%
+            \vss%
+        }%
+        \hskip-#1%
+        \copy\@tempboxa%
+    }%
+    \endgroup%
+}
 \newcommand\make@cntitle{%
     \begin{titlepage}%
+        \renewcommand{\ULthickness}{1.2pt}% 封面下划线加粗
         % \tikz[remember picture,overlay]%
         %     \node [yshift=-4cm] at (current page.north) [below,align=flush center]%
         %         {\parbox{\textwidth}{\raggedleft\fangsong\setfontsize{14bp}\ustc@secrettext}};
         \headrule
+        \vspace{-0.45cm}%
         \noindent
         \hspace{-4pt}
         \makebox[3em][r]{\songti\zihao{-4}\textbf{分类号}}%
-        \rule[-3pt]{0.6\textwidth}{0.7pt}%
+        \ful[10cm]{\songti\zihao{4}\textbf{\ustc@classnum}}
+        % \rule[-3pt]{0.6\textwidth}{0.7pt}%
         \hspace{-15pt}
         \makebox[3em][r]{\songti\zihao{-4} \textbf{密级}}%
-        \rule[-3pt]{112pt}{0.6pt} 
-        
+        % \rule[-3pt]{112pt}{0.6pt} 
+        \ful[2cm]{\songti\zihao{-4}\textbf{\ustc@secretlevel}}
+
         \noindent
         \hspace{-12pt}
         \makebox[3em][r]{\abstitlefont\zihao{-4}\textbf{UDC}}%
-        \rule[-3pt]{0.62\textwidth}{0.7pt}
+        \ful[\dimexpr10cm+8pt\relax]{}%
 
         % \vpostext{5.2cm}{\includegraphics[height=65bp]{figures/ciae_logo_text.jpg}}%
-        \vpostext{8.5cm}{\songti\bfseries\setfontsize{36pt}\ustc@thesisname}%
+        \vpostext{8cm}{\songti\bfseries\setfontsize{36pt}\ustc@thesisname}%
         % \vpostext{11cm}{\includegraphics[height=5cm]{figures/ciae_logo_fig.jpg}}%
         \begin{spacing}{1.5}
         \vpostext{11cm}{\songti\bfseries\zihao{2}\uline{\ustc@title}}%
         \end{spacing}
         \vpostext{15cm}{\songti\bfseries\zihao{3}\uline{\ustc@author}}
-        \begin{spacing}{1.5}
         \tikz[remember picture,overlay]%
         \node [yshift=-17cm] at (current page.north) [below,align=flush center]%
-            {\parbox{\linewidth}{{\songti\zihao{4}\textbf{指导教师姓名}}\quad \ful[11.6cm]{ \songti\zihao{4}\textbf{\ustc@advisor}\qquad \songti\zihao{4}\textbf{\ustc@depart}\qquad \songti\zihao{4}\textbf{中国原子能科学研究院}}}\\
-            \parbox{\linewidth}{{\songti\zihao{4}\textbf{申请学位级别}}\quad \ful[3.13cm]{ \songti\zihao{4}\textbf{硕士}} \songti\zihao{4}\textbf{专业名称}\uline{\qquad \songti\zihao{4}\textbf{\ustc@major}\quad}}\\
-            \parbox{\linewidth}{{\songti\zihao{4}\textbf{论文提交日期}}\quad \ful[3.13cm]{ \songti\zihao{4}\textbf{2025.5}} \songti\zihao{4}\textbf{论文答辩日期}\ful[5.4cm]{\qquad \songti\zihao{4}\textbf{2025.6}\quad}}\\
-            \parbox{\linewidth}{{\songti\zihao{4}\textbf{学位授予单位和日期}}\quad \ful[10.15cm]{\songti\zihao{4}\textbf{中国原子能科学研究院}\quad \songti\zihao{4}\textbf{2025.7} }}
+            {\parbox{\linewidth}{{\songti\zihao{4}\textbf{指导教师姓名}}\quad \ful[11.6cm]{ \songti\zihao{4}\textbf{\ustc@advisor}\qquad \songti\zihao{4}\textbf{\ustc@depart}\qquad \songti\zihao{4}\textbf{中国原子能科学研究院}}}%
+            \ifx\ustc@coadvisor\@empty\else\\[7pt]%
+            \parbox{\linewidth}{{\songti\zihao{4}\textbf{\phantom{指导教师姓名}}}\quad \ful[11.6cm]{ \songti\zihao{4}\textbf{\ustc@coadvisor}\qquad \songti\zihao{4}\textbf{\ustc@codepart}\qquad \songti\zihao{4}\textbf{中国原子能科学研究院}}}\fi\\[7pt]
+            \parbox{\linewidth}{{\songti\zihao{4}\textbf{申请学位级别}}\quad \ful[3.13cm]{ \songti\zihao{4}\textbf{\ustc@degree}} \songti\zihao{4}\textbf{专业名称}\uline{\qquad \songti\zihao{4}\textbf{\ustc@major}\quad}}\\[7pt]
+            \parbox{\linewidth}{{\songti\zihao{4}\textbf{论文提交日期}}\quad \ful[3.13cm]{ \songti\zihao{4}\textbf{\ustc@submitdate}} \songti\zihao{4}\textbf{论文答辩日期}\ful[5.4cm]{\qquad \songti\zihao{4}\textbf{\ustc@defensedate}\quad}}\\[7pt]
+            \parbox{\linewidth}{{\songti\zihao{4}\textbf{学位授予单位和日期}}\quad \ful[10.15cm]{\songti\zihao{4}\textbf{中国原子能科学研究院}\quad \songti\zihao{4}\textbf{\ustc@grantdate} }}
             };
-        \end{spacing}
-        \begin{spacing}{1.5}
-            \tikz[remember picture,overlay]%
-            \node [yshift=-22cm] at (current page.north) [below,align=flush center]%
-                {\parbox{\linewidth}{{\hfill \songti\zihao{4}\textbf{答辩委员会会主席}}\quad \ful[5em]{}}\\
-                \parbox{\linewidth}{{\hfill \songti\zihao{4}\textbf{评阅人}}\quad \ful[10.8em]{}}\\
-                };
-        \end{spacing}
+        \tikz[remember picture,overlay]%
+        \node [yshift=-22.5cm] at (current page.north) [below,align=flush center]%
+            {\parbox{\linewidth}{\raggedleft\songti\zihao{4}%
+                \begin{tabular}[t]{@{}l@{\enspace}p{\dimexpr6cm-7.5em\relax}@{}}
+                    \textbf{答辩委员会主席} & \ful[\dimexpr6cm-7.5em\relax]{\textbf{\ustc@chairman}}
+                \end{tabular}\\[7pt]%
+                \begin{tabular}[t]{@{}l@{\enspace}l@{}}
+                    \textbf{评阅人} & \ustc@reviewer@box{\dimexpr6cm-3.5em\relax}
+                \end{tabular}%
+            }%
+            };
+        \vpostext{26cm}{\songti\bfseries\zihao{4}{\ustc@coverdate}}
     \end{titlepage}}
 \newcommand\make@entitle{%
     \begin{titlepage}%
@@ -402,13 +485,14 @@
     \end{tabular}}
 }
 \newenvironment{abstract}{%
-    \ifustc@opt@bachelor
-        \ctexset{chapter/format += \zihao{-2}}
-    \fi
-    \chapter[摘\zhspace 要]{摘\zhspace 要}
-    \songti\zihao{4}% 宋体四号
-    \linespread{1.5}\selectfont % 1.5倍行距
-    \setlength{\parindent}{2em} % 首行缩进2字符
+    \ctexset{%
+        chapter/format     += \heiti\zihao{3}\linespread{1.0}\selectfont,% 黑体三号单倍行距
+        chapter/afterskip   = 0pt,% 段后0行（空行由下方\vspace手动插入）
+    }%
+    \chapter[摘\zhspace 要]{摘\zhspace 要}%
+    \songti\zihao{4}\linespread{1.5}\selectfont% 宋体四号1.5倍行距
+    \setlength{\parindent}{2em}% 首行缩进2字符
+    \vspace{\baselineskip}% 标题与正文间空一行
     }{}
 \newenvironment{enabstract}{%
     \ifustc@opt@bachelor
@@ -425,7 +509,7 @@
     \abstitlefont\zihao{4}\linespread{1.25}\selectfont% 正文格式
     \fi}{}
 \newcommand\keywords[1]{\par\phantom{关键词}\par\noindent\hangindent=4\ccwd\relax
-{\sffamily\zihao{4} 关键词：}#1}
+{\heiti\zihao{4} 关键词：}#1}
 \newcommand\enkeywords[1]{\vspace{1\baselineskip}\par\phantom{KEY WORDS}\par\noindent\hangindent=5.3em\relax
     \textbf{KEY WORDS:} #1}
 \let\ustc@save@tableofcontents=\tableofcontents
@@ -438,6 +522,16 @@
     \pdfbookmark[0]{\ustc@pdf@contentsname}{ustctoc}%
     \ustc@save@tableofcontents}
 \RequirePackage{titletoc}
+
+% 消除图/表目录中章节间的额外间距，保持条目等间距
+\AtBeginDocument{%
+    \let\ustc@orig@listoffigures\listoffigures
+    \let\ustc@orig@listoftables\listoftables
+    \renewcommand{\listoffigures}{%
+        \begingroup\let\addvspace\@gobble\ustc@orig@listoffigures\endgroup}
+    \renewcommand{\listoftables}{%
+        \begingroup\let\addvspace\@gobble\ustc@orig@listoftables\endgroup}
+}
 
 \newcommand\ustc@leaders{\titlerule*[0.5pc]{.}}
 \ifustc@opt@bachelor
@@ -459,31 +553,30 @@
 \else
     \titlecontents{chapter}
         [0bp]
-        % {\addvspace{6bp}\setfontsize{10.5bp}[20bp]}
-        {\addvspace{0bp}\sffamily\zihao{-4}\selectfont}  % 章标题：黑体小4，1.25行距
+        {\addvspace{0bp}\heiti\zihao{-4}\linespread{1.25}\selectfont}  % 黑体小4，1.25倍行距，段前0
         {\thecontentslabel\hspace*{0.5em}}
         {}{\ustc@leaders\contentspage}
     \titlecontents{section}
         [\ccwd]
-        {\songti\zihao{-4}\selectfont}
+        {\addvspace{0bp}\songti\zihao{-4}\linespread{1.25}\selectfont}  % 宋体小4，1.25倍行距，段前0
         {\thecontentslabel\hspace*{0.5em}}
         {}{\ustc@leaders\contentspage}
     \titlecontents{subsection}
         [2\ccwd]
-        {\songti\zihao{-4}\selectfont}
+        {\addvspace{0bp}\songti\zihao{-4}\linespread{1.25}\selectfont}  % 宋体小4，1.25倍行距，段前0
         {\thecontentslabel\hspace*{0.5em}}
         {}{\ustc@leaders\contentspage}
 \fi
 \titlecontents{figure}
     [\ccwd]
-    {\addvspace{0pt}\setlength{\baselineskip}{1.25\baselineskip}\fontspec{SimSun}\fontsize{12pt}{15pt}\selectfont} % 设置宋体小4号，行距为1.25倍
-    {图\abstitlefont\zihao{-4} \thecontentslabel\hspace*{0.2em}}
-    {}{\ustc@leaders\contentspage}
+    {\addvspace{0bp}\songti\setfontsize{12bp}[18bp]}  % 宋体小4，1.25倍行距（15bp），段前0
+    {图~\thecontentslabel\hspace*{0.2em}}
+    {}{\titlerule*[0.5pc]{\raisebox{0.2ex}{$\cdot$}}\contentspage}
 \titlecontents{table}
     [\ccwd]
-    {\addvspace{0pt}\setlength{\baselineskip}{1.25\baselineskip}\fontspec{SimSun}\fontsize{12pt}{15pt}\selectfont} % 设置宋体小4号，行距为1.25倍
-    {表\abstitlefont\zihao{-4}\thecontentslabel\hspace*{0.2em}}
-    {}{\ustc@leaders\contentspage}
+    {\addvspace{0bp}\songti\setfontsize{12bp}[18bp]}  % 宋体小4，1.25倍行距（15bp），段前0
+    {表~\thecontentslabel\hspace*{0.2em}}
+    {}{\titlerule*[0.5pc]{\raisebox{0.2ex}{$\cdot$}}\contentspage}
 \ifustc@opt@bachelor
     \let\ustc@save@chapter=\chapter
     \let\ustc@save@mainmatter=\mainmatter
@@ -508,33 +601,32 @@
 \setcounter{secnumdepth}{3}
 \ctexset{
     chapter = {
-        format = \centering\sffamily\setfontsize{16bp}[16pt],
+        format = \centering\heiti\bfseries\zihao{3}, % 黑体三号，英文数字Times New Roman加粗
         nameformat = {},
         titleformat = {},
         number = \chinese{chapter},
         aftername = \quad,
-        beforeskip = 19.85bp, % 24bp - 31bp
-        afterskip = 19.85bp, % 18bp - 10bp
-        % fixskip = true, % will be used in future version
+        beforeskip = 19.85bp,
+        afterskip = 19.85bp,
     },
     section = {
-        format = \sffamily\setfontsize{14bp}[14bp],
-        numberformat = \abstitlefont\selectfont, % 序号用Times New Roman
-        nameformat = \sffamily, % 汉字用黑体
+        format = \heiti\bfseries\zihao{4}, % 黑体四号，英文数字Times New Roman加粗
+        numberformat = \abstitlefont\mdseries\selectfont, % 序号Times New Roman不加粗
+        nameformat = \heiti,
         beforeskip = 13bp,
         afterskip = 13bp,
         aftername = \hspace{5pt}
     },
     subsection = {
-        format = \sffamily\setfontsize{13bp}[13bp],
-        numberformat = \abstitlefont\selectfont, % 序号用Times New Roman
-        nameformat = \sffamily, % 汉字用黑体
+        format = \heiti\bfseries\zihao{-4}, % 黑体小四号，英文数字Times New Roman加粗
+        numberformat = \abstitlefont\bfseries\selectfont, % 序号Times New Roman加粗
+        nameformat = \heiti,
         beforeskip = 8.5bp,
         afterskip = 8.5bp,
         aftername = \hspace{5pt}
     },
     subsubsection = {
-        format = \sffamily\setfontsize{12bp},
+        format = \heiti\bfseries\zihao{-4}, % 黑体小四号
         beforeskip = 12bp,
         afterskip = 6bp,
     },

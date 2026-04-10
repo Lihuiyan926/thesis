@@ -2,78 +2,95 @@
 %!TEX program = xelatex
 %!BIB program = bibtex
 
-\documentclass[master,chinese,pdf,AutoFakeFont=true]{ustcthesis}
-% bachelor|master|doctor
+% ============================================================
+% 中国原子能科学研究院（CIAE）学位论文 LaTeX 模板
+% 使用前请阅读各章节文件中的注释说明
+% 编译方式：xelatex -> bibtex -> xelatex -> xelatex
+% ============================================================
+
+\documentclass[doctor,chinese,print]{ustcthesis}
+% 学位类型选项：master（硕士）| doctor（博士），选择后页眉自动切换
+% 语言选项：chinese（中文）
 \usepackage{ustcextra}
-\usepackage{subfigure}
-\graphicspath{{figures/}}
-%\bibliographystyle{ustcauthoryear}
-% \bibliographystyle{ustcnumerical}
-\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+% subcaption 已在 ustcthesis.cls 中加载，此处无需重复
+\graphicspath{{figures/}}   % 图片搜索路径，建议将所有图片放于 figures/ 目录下
 
+% 参考文献格式：gbt7714-numerical（顺序编码制，推荐）
+%               ustcauthoryear（著者-出版年制）
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}  % 上标引用命令
 
+% ============================================================
+% 封面信息填写区（请替换尖括号内的占位符）
+% ============================================================
 
-\title{XXXXXXXXXXXXXXXX参数研究}
-\author{XX}XX
-\major{粒子物理与原子核物理}
-\advisor{XX}XXXXXXXXXXXXXXXX
-% \secrettext{机密\quad 小于等于20年}   % 内部|秘密|机密，注释本行则不保密
-\depart{研究员}
+\classnum{O571.6}               % 分类号（中图分类号）
+\secretlevel{非密}              % 密级：非密|内部|秘密|机密
+\title{基于XXXX的研究\\换行测试}          % 论文中文题目
+\author{张~三~三}               % 作者姓名（姓名间用~分隔以调整间距）
+\major{粒子物理与原子核物理}     % 学科专业
+\advisor{李四}              % 导师姓名
+\depart{研究员}                 % 导师职称
+\coadvisor{王五}            % 副导师姓名（如有，取消注释）
+\codepart{副研究员}         % 副导师职称（如有，取消注释）
+% \secrettext{机密\quad 小于等于20年}   % 密级：内部|秘密|机密，不涉密则注释本行
+\submitdate{2025.5}             % 论文提交日期
+\defensedate{2025.5}            % 论文答辩日期
+\grantdate{2025.7}              % 学位授予日期
+\chairman{张六六}               % 答辩委员会主席
+\reviewer{赵七、吴九九、刘十}         % 评阅人
+\coverdate{2025年5月}           % 封面底部日期
 
-
-% \entitle{The Research of the Design and Application \\of Cortex-like Intelligent Model}
-% \enauthor{Mincong Luo}
-% \enmajor{Applied Mathematics}
-% \enadvisor{Prof. Jianyou Lv}
-% \ensubmitdate{April, 2019}
-%\ensecrettext{Confidential\quad Less than or equal to 20 years}  % Internal|Secret|Confidential
+% 英文封面信息（如需英文封面，取消注释并填写）
+% \entitle{Research on XXX Based on XXXX}
+% \enauthor{Zhang Sansan}
+% \enmajor{Particle Physics and Nuclear Physics}
+% \enadvisor{Prof. Li Sisi}
+% \ensubmitdate{June, 202X}
+% \ensecrettext{Confidential\quad Less than or equal to 20 years}
 
 \begin{document}
 
 \maketitle
 
-
-% 硕博论文:
-%   frontmatter: 中文摘要、英文摘要、目录、符号说明
-%   mainmatter: 正文、参考文献
-%   appendix: 附录
-%   backmatter: 致谢、发表论文
-%
+% ============================================================
+% 论文结构说明：
+%   frontmatter：中文摘要、英文摘要、目录、图目录、表目录、符号说明
+%   mainmatter ：正文各章节、参考文献
+%   appendix   ：附录
+%   backmatter ：致谢、发表论文列表
+% ============================================================
 
 \frontmatter
-\input{chapters/abstract}
+\input{chapters/abstract}        % 中英文摘要
 {
-\linespread{1.25}\selectfont% local line space
-\tableofcontents
-\listoffigures
-\listoftables
+\linespread{1.25}\selectfont     % 目录局部行距
+\tableofcontents                 % 目录
+\listoffigures                   % 图目录（如无图，可注释）
+\listoftables                    % 表目录（如无表，可注释）
 }
-% \listofalgorithms  % 算法索引，如不需要，可直接注释掉本行
-% \input{chapters/notation}
+% \listofalgorithms              % 算法索引（如不需要，保持注释）
+% \input{chapters/notation}      % 符号说明（如不需要，保持注释）
 
+% 自定义定理环境（按需增减）
 \newtheorem{proof_idea}{证明思路}
 \newtheorem{thm}{定理}
 
 \mainmatter
-% \input{chapters/cover}
-\input{chapters/chap01}
-\input{chapters/chap02}
-\input{chapters/chap03}
-\input{chapters/chap04}
-\input{chapters/chap05}
-\input{chapters/chap06}
-\input{chapters/chap07}
 
+\input{chapters/chap01}   % 第一章：快速开始（模板使用说明，正式论文请替换为绪论）
+\input{chapters/chap02}   % 第二章：文字与段落排版
+\input{chapters/chap03}   % 第三章：数学公式与定理
+\input{chapters/chap04}   % 第四章：图片与表格
+\input{chapters/chap05}   % 第五章：参考文献
+\input{chapters/chap06}   % 第六章：高级功能
+% \input{chapters/chap07} % 如需更多章节，取消注释并新建对应文件
 
-\bibliographystyle{gbt7714-numerical}%{alpha}
-\bibliography{bib/refs}
-
-%\appendix{chapters/appendix}
-%\chapter{论文规范}
+\bibliographystyle{gbt7714-numerical}  % 参考文献格式
+\bibliography{bib/refs}                % 参考文献数据库文件
 
 \backmatter
-\input{chapters/appendix}
-\input{chapters/acknowledgements}
-\input{chapters/publications}
+\input{chapters/appendix}      % 附录（如无，注释该行）
+\input{chapters/acknowledgements}  % 致谢
+\input{chapters/publications}      % 发表论文列表
 
 \end{document}

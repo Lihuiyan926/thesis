@@ -7,13 +7,13 @@
 
 % 表格：
 % 三线表
-\RequirePackage{booktabs}
+\RequirePackage{booktabs,notoccite}
 % 跨页表格
 \RequirePackage{longtable}
 
 % 数学：
 \RequirePackage{amsmath,amsthm,amssymb,braket,float,threeparttable,multicol,multirow}
-\RequirePackage{ulem,setspace,bm}
+\RequirePackage{ulem,setspace,bm,fixdif,revsymb,paralist}
 \numberwithin{equation}{chapter}%公式按章节编号
 \numberwithin{figure}{chapter}%图表按章节编号
 % 数学定理：
@@ -74,7 +74,8 @@
 
 % 算法和代码：
 % 算法环境
-\RequirePackage[boxed, algochapter, lined, linesnumbered]{algorithm2e}
+\RequirePackage[boxruled, algochapter, lined, linesnumbered]{algorithm2e}
+\SetKwRepeat{Do}{do}{while}
 \ifustc@opt@english
   \renewcommand\listalgorithmcfname{List of Algorithms}
   \renewcommand\algorithmcfname{Algorithm}
