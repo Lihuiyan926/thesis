@@ -679,7 +679,7 @@
 \RequirePackage{caption}
 \RequirePackage{calc}
 \DeclareCaptionLabelSeparator{zhspace}{\hspace{\ccwd}}
-\DeclareCaptionLabelSeparator{shortk}{\hspace{1pt}}
+\DeclareCaptionLabelSeparator{shortk}{\hspace{0.5em}}
 \captionsetup{
     format = hang,
     labelsep = shortk,
